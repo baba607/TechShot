@@ -63,14 +63,42 @@ def layout_scenes(chunks):
     return scene_durs, scene_bounds, t
 
 
-def build_full_audio(chunks, scene_bounds, total, work_dir, sample_rate=22050):
-    """Mix chunk wavs onto one mono timeline with the layout gaps."""
+def _resample_wav(path, rate, work_dir):
+    """Return a mono 16-bit wav at `rate`, resampling with ffmpeg if needed.
+
+    Kokoro writes 24 kHz, Piper 22050 Hz — and one run may even mix both
+    engines — so a chunk at another rate is converted instead of failing.
+    """
+    with wave.open(str(path), "rb") as w:
+        params = w.getparams()
+    if params.framerate == rate and params.nchannels == 1 \
+            and params.sampwidth == 2:
+        return path
+    out = Path(work_dir) / f"resampled_{rate}_{Path(path).stem}.wav"
+    run(["ffmpeg", "-y", "-v", "error", "-i", str(path),
+         "-ar", str(rate), "-ac", "1", "-sample_fmt", "s16", str(out)])
+    return out
+
+
+def build_full_audio(chunks, scene_bounds, total, work_dir, sample_rate=None):
+    """Mix chunk wavs onto one mono timeline with the layout gaps.
+
+    The timeline follows the first chunk's sample rate (Kokoro 24 kHz,
+    Piper 22050 Hz); chunks at another rate are resampled with ffmpeg.
+    """
+    if sample_rate is None:
+        if chunks:
+            with wave.open(str(chunks[0][1]), "rb") as w:
+                sample_rate = w.getframerate()
+        else:
+            sample_rate = 22050
     timeline = bytearray()
 
     def add_silence(sec):
         timeline.extend(b"\x00\x00" * int(sample_rate * sec))
 
     def add_chunk(path, at_sec):
+        path = _resample_wav(path, sample_rate, work_dir)
         with wave.open(str(path), "rb") as w:
             params, frames = w.getparams(), w.readframes(w.getnframes())
         assert params.framerate == sample_rate and params.nchannels == 1 \
