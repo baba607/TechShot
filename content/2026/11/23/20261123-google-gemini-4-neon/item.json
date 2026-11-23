@@ -17,7 +17,7 @@
   ],
   "status": "APPROVED",
   "created_at": "2026-11-23T15:14:43.231588+00:00",
-  "updated_at": "2026-11-23T16:52:38.506481+00:00",
+  "updated_at": "2026-11-23T16:58:04.995616+00:00",
   "history": [
     {
       "at": "2026-11-23T15:14:43.231609+00:00",
@@ -120,6 +120,12 @@
       "from": "FAILED",
       "to": "APPROVED",
       "note": "FB Offset header fixed + status poll added — re-approved for facebook-only re-publish. IG + YT already live."
+    },
+    {
+      "at": "2026-11-23T16:58:04.995616+00:00",
+      "from": "FAILED",
+      "to": "APPROVED",
+      "note": "FB status poll fixed (upload_complete is enough) — re-approved for facebook-only re-publish. IG + YT already live."
     }
   ],
   "publish": {
