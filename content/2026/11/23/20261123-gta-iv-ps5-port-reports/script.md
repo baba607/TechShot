@@ -10,7 +10,7 @@ Prepared: 2026-11-23 21:55 IST · Status: SCRIPT + SCENE PLAN ONLY — video/voi
 - **Source 5:** DailyRespawn, Nov 2026 — "Is GTA IV Still Worth Playing in 2026?" — koi remaster ya official PS4/PS5 version nahi hai; Xbox backward compatibility aur PC Complete Edition se khela ja sakta hai (https://dailyrespawn.com/article/is-gta-iv-still-worth-playing-in-2026-why-niko-bellics-liberty-city-holds-up-bef)
 - **Verification status: VERIFIED (reports-level).** Port/remaster ki khabar sirf reports hain — script me "reports ke mutabik" likha hai, confirm karke nahi. Sirf wahi daave script me hain jo sources me hain: 2008 launch, Niko Bellic/Liberty City, aaj khelne ke tareeke, aur Rockstar ki chuppi.
 - **Jo claim NAHI karna:** release date, price, "remaster confirm hai", PS5 version maujood hai, 4K/60fps PS5 par, Max Payne 3 bundle confirm — ye sab verified nahi hain, isliye script me nahi hain.
-- **Category:** Gaming News · **News date:** 18–22 Nov 2026 (reports) · **Duration target:** 30–40 sec
+- **Category:** Gaming News · **News date:** 18–22 Nov 2026 (reports) · **Duration target:** 30–45 sec
 
 ## VIDEO TITLE
 GTA 4 PS5 par kab aayega? Reports kya keh rahe hain!
@@ -18,19 +18,19 @@ GTA 4 PS5 par kab aayega? Reports kya keh rahe hain!
 ## HOOK (0–3 sec)
 "GTA 4 PS5 par kab aayega? Reports me phir se halchal hai!"
 
-## VOICEOVER SCRIPT (Roman Hindi) — ~40 sec, bolne layak
-"GTA 4 PS5 par kab aayega? Reports ke mutabik, Rockstar ke andar GTA 4 Enhanced par kaam chal raha hai, lekin official announcement abhi tak kuch bhi nahi hai.
-Yaad rahe, GTA 4 2008 me aaya tha — Niko Bellic ki kahani aur Liberty City ne isko legend bana diya.
-Aaj khelna ho to Xbox Series X ya S par backward compatibility se chal jata hai, aur PC par Complete Edition milta hai. PS5 par abhi koi official version nahi hai.
-Reports sach hue to Liberty City wapas aayega!
-Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
+## VOICEOVER SCRIPT (Roman Hindi) — ~42 sec, bolne layak
+"GTA 4 PS5 par kab aayega? Reports ke mutabik, Rockstar GTA 4 Enhanced par kaam kar raha hai, lekin official announcement nahi hai.
+GTA 4 2008 me aaya tha — Niko Bellic aur Liberty City ne isko legend bana diya.
+Aaj khelna ho to Xbox Series X/S par backward compatibility se chal jata hai, PC par Complete Edition milta hai. PS5 par abhi koi version nahi hai.
+Reports sach hue to Liberty City wapas!
+Tech Updates ke liye Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari) — TTS input, Kokoro/Piper ko yehi chahiye
-"जीटीए 4 पीएस5 पर कब आएगा? रिपोर्ट्स के मुताबिक, रॉकस्टार के अंदर जीटीए 4 एनहांस्ड पर काम चल रहा है, लेकिन ऑफिशियल अनाउंसमेंट अभी तक कुछ भी नहीं है।
-याद रहे, जीटीए 4 2008 में आया था — निको बेलिक की कहानी और लिबर्टी सिटी ने इसको लेजेंड बना दिया।
-आज खेलना हो तो एक्सबॉक्स सीरीज़ एक्स या एस पर बैकवर्ड कम्पैटिबिलिटी से चल जाता है, और पीसी पर कम्प्लीट एडिशन मिलता है। पीएस5 पर अभी कोई ऑफिशियल वर्ज़न नहीं है।
-रिपोर्ट्स सच हुईं तो लिबर्टी सिटी वापस आएगा!
-ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+"जीटीए 4 पीएस5 पर कब आएगा? रिपोर्ट्स के मुताबिक, रॉकस्टार जीटीए 4 एनहांस्ड पर काम कर रहा है, लेकिन ऑफिशियल अनाउंसमेंट नहीं है।
+जीटीए 4 2008 में आया था — निको बेलिक और लिबर्टी सिटी ने इसको लेजेंड बना दिया।
+आज खेलना हो तो एक्सबॉक्स सीरीज़ एक्स/एस पर बैकवर्ड कम्पैटिबिलिटी से चल जाता है, पीसी पर कम्प्लीट एडिशन मिलता है। पीएस5 पर अभी कोई वर्ज़न नहीं है।
+रिपोर्ट्स सच हुईं तो लिबर्टी सिटी वापस!
+टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
@@ -39,7 +39,7 @@ Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 | 2 | 3–10s | Modern gaming news desk visual, glowing report documents and game controller silhouette, dark studio | REPORTS: GTA 4 ENHANCED? |
 | 3 | 10–20s | Lone man in dark leather jacket walking away down a rainy city street at dusk, moody amber streetlights | NIKO BELLIC — 2008 LEGEND |
 | 4 | 20–30s | Split composition — Xbox controller glowing amber on one side, gaming PC with teal light on the other | XBOX + PC PAR KHEL SAKTE HO |
-| 5 | 30–40s | Tech Shot brand ending, dark background + logo space | TECH SHOT — FOLLOW KARO |
+| 5 | 30–42s | Tech Shot brand ending, dark background + logo space | TECH SHOT — FOLLOW KARO |
 
 ## CAPTION (Instagram)
 GTA 4 PS5 par kab aayega? 🎮
