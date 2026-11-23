@@ -49,6 +49,15 @@ jobs:
       - name: Install Piper (fallback voice only)
         run: pip install --quiet piper-tts || echo "Piper install failed — Kokoro only"
 
+      # edge-tts is the 2nd fallback voice (Kokoro -> edge-tts -> Piper).
+      # Free, no key; needs network to Microsoft at build time (CI has it).
+      # auto-editor trims each voice chunk's silence (max 0.35s kept);
+      # if it fails to install, the pipeline's stdlib trim fallback runs.
+      - name: Install edge-tts (fallback voice) + auto-editor (silence trim)
+        run: |
+          pip install --quiet edge-tts || echo "edge-tts install failed — Piper fallback only"
+          pip install --quiet auto-editor || echo "auto-editor install failed — stdlib trim fallback will be used"
+
       - name: Build reel (voice -> video -> quality check)
         env:
           TECHSHOT_PIPER_MODEL: /tmp/hi_IN-pratham-medium.onnx

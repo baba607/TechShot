@@ -27,6 +27,9 @@ def main():
     ap.add_argument("--lang", default="h", help="Kokoro language code ('h' = Hindi)")
     ap.add_argument("--model", default="hexgrad/Kokoro-82M",
                     help="Hugging Face model id")
+    ap.add_argument("--speed", type=float, default=1.01,
+                    help="Speech speed multiplier (1.01 = Rahasya Bharat, "
+                         "a touch slower than Kokoro's 1.0 default)")
     ap.add_argument("--out", required=True, help="Output .wav path")
     args = ap.parse_args()
 
@@ -53,7 +56,7 @@ def main():
 
     try:
         pipeline = KPipeline(lang_code=args.lang)
-        generator = pipeline(text, voice=args.voice)
+        generator = pipeline(text, voice=args.voice, speed=args.speed)
         audio = None
         for _gs, _ps, audio_chunk in generator:
             audio = audio_chunk  # single-chunk text in, single chunk out
@@ -64,7 +67,8 @@ def main():
     except Exception as exc:
         print(f"kokoro_tts: generation failed: {exc}", file=sys.stderr)
         return 4
-    print(f"kokoro_tts: wrote {args.out} (voice {args.voice})")
+    print(f"kokoro_tts: wrote {args.out} (voice {args.voice}, "
+          f"speed {args.speed})")
     return 0
 
 

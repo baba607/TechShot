@@ -10,6 +10,7 @@ src/voice.py. No video is ever generated from text alone — images are made
 per scene by Muse from the script.
 """
 
+import hashlib
 import json
 import subprocess
 import wave
@@ -18,7 +19,9 @@ from pathlib import Path
 import config
 
 GAP_BEFORE = 0.35   # silence before first chunk in a scene
-GAP_BETWEEN = 0.30  # silence between chunks in same scene
+GAP_BETWEEN = 0.08  # silence between sentence chunks in a scene (Rahasya
+                    # Bharat: 0.08s — short enough that the narration does
+                    # not sound choppy; was 0.30s)
 TAIL = 0.45         # silence after last chunk in a scene (0.9 for end card)
 MIN_DUR = [3.0, 2.5, 3.0, 4.0, 3.5]  # per scene, seconds
 
@@ -183,7 +186,74 @@ def render_segment(image, duration, index, work_dir, is_end_card=False):
     return seg
 
 
-def build_reel(scene_images, chunks, scene_texts, out_path, work_dir):
+def pick_music_track(reel_id=None):
+    """Pick one bundled CC0 music track (stable rotation by reel id).
+
+    Any *.mp3 in config.MUSIC_DIR (assets/music/) is eligible; the track
+    is chosen by sha256(reel_id) so the same reel always gets the same
+    music and reels rotate across the available tracks. Returns None
+    when music is disabled or no tracks are bundled.
+    """
+    if not config.MUSIC_ENABLED:
+        return None
+    music_dir = config.MUSIC_DIR
+    tracks = sorted(music_dir.glob("*.mp3")) if music_dir.is_dir() else []
+    if not tracks:
+        return None
+    if reel_id:
+        idx = int(hashlib.sha256(str(reel_id).encode()).hexdigest(), 16)
+        return tracks[idx % len(tracks)]
+    return tracks[0]
+
+
+def _music_filter(total, sample_rate):
+    """FFmpeg audio filter: quiet music under the voiceover + limiter.
+
+    Music at config.MUSIC_VOLUME (0.25), 2s fade-in, fade-out over the
+    last 4s, mixed with the voiceover and capped by a limiter (0.95)
+    so voice + music never clips. Expects inputs [1:a] (voiceover) and
+    [2:a] (music); produces [aout].
+    """
+    vol = config.MUSIC_VOLUME
+    fade_in = config.MUSIC_FADE_IN
+    fade_out = config.MUSIC_FADE_OUT
+    limit = config.MUSIC_LIMIT
+    return (
+        f"[2:a]aresample={sample_rate},pan=mono|c0=0.5*c0+0.5*c1,"
+        f"volume={vol},afade=t=in:st=0:d={fade_in},"
+        f"afade=t=out:st={total - fade_out:.2f}:d={fade_out},"
+        f"atrim=0:{total:.2f}[music];"
+        f"[1:a][music]amix=inputs=2:duration=first,"
+        f"alimiter=limit={limit}[aout]")
+
+
+def _encode_cmd(concat_list, full_audio, ass, total, out_path, music=None):
+    """Build the final ffmpeg encode command (video + audio mix)."""
+    video_filter = (
+        "[0:v]fade=t=out:st={:.2f}:d=0.6,"
+        "subtitles={}:fontsdir=/usr/share/fonts[v]".format(
+            total - 0.6, str(ass).replace(":", "\\:")))
+    cmd = ["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
+           "-i", str(concat_list), "-i", str(full_audio)]
+    if music is not None:
+        with wave.open(str(full_audio), "rb") as w:
+            sample_rate = w.getframerate()
+        cmd += ["-stream_loop", "-1", "-i", str(music)]
+        filter_complex = video_filter + ";" + _music_filter(total, sample_rate)
+        audio_map = "[aout]"
+    else:
+        filter_complex = video_filter
+        audio_map = "1:a"
+    cmd += ["-filter_complex", filter_complex,
+            "-map", "[v]", "-map", audio_map,
+            "-c:v", "libx264", "-preset", "medium",
+            "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
+            "-movflags", "+faststart", "-shortest", str(out_path)]
+    return cmd
+
+
+def build_reel(scene_images, chunks, scene_texts, out_path, work_dir,
+               reel_id=None):
     """Assemble a finished reel. Returns (out_path, info dict)."""
     work_dir = Path(work_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
@@ -205,15 +275,20 @@ def build_reel(scene_images, chunks, scene_texts, out_path, work_dir):
     # fade=t=in:st=0:d=0.4, which made frame 0 pure black — and Instagram
     # uses frame 0 as the profile-grid thumbnail, so all 3 reels showed
     # as black tiles (2026-11-24). Fade-out at the end is kept.
-    run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
-         "-i", str(concat_list), "-i", str(full_audio),
-         "-filter_complex",
-         "[0:v]fade=t=out:st={:.2f}:d=0.6,"
-         "subtitles={}:fontsdir=/usr/share/fonts[v]".format(
-             total - 0.6, str(ass).replace(":", "\\:")),
-         "-map", "[v]", "-map", "1:a", "-c:v", "libx264", "-preset", "medium",
-         "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
-         "-movflags", "+faststart", "-shortest", str(out_path)])
+    music = pick_music_track(reel_id)
+    if music is not None:
+        print(f"[music] track: {music.name} (volume {config.MUSIC_VOLUME})")
+    try:
+        run(_encode_cmd(concat_list, full_audio, ass, total, out_path,
+                        music=music))
+    except subprocess.CalledProcessError:
+        if music is not None:
+            # Music must never fail a build — retry voice-only.
+            print("[music] WARNING: music mix failed — retrying voice-only.")
+            run(_encode_cmd(concat_list, full_audio, ass, total, out_path,
+                            music=None))
+        else:
+            raise
     info = {"scene_durations": [round(d, 2) for d in scene_durs],
             "total": round(total, 2), "output": str(out_path)}
     print("DONE:", out_path)

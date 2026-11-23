@@ -13,3 +13,12 @@ PyYAML>=6.0          # only used by tests to validate workflow YAML
 #   pip install piper-tts
 # The Piper voice model (.onnx) is downloaded separately and is NOT committed.
 #   https://github.com/rhasspy/piper-voices (hi_IN-pratham-medium)
+
+# Optional, only needed for the edge-tts voice step (2nd FALLBACK, free,
+# no key — needs network to Microsoft at build time):
+#   pip install edge-tts
+
+# Optional, only needed for the Auto-Editor silence trim (max 0.35s kept
+# at each chunk end). If it is missing, the pipeline falls back to a
+# pure-stdlib trim that needs nothing extra:
+#   pip install auto-editor

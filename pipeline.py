@@ -126,7 +126,8 @@ def cmd_build(args):
                    if "\\N" not in s.get("text", "") else s["text"]
                    for s in script["scenes"]]
     out = d / "final_video.mp4"
-    _path, info = video_mod.build_reel(images, chunks, scene_texts, out, work)
+    _path, info = video_mod.build_reel(images, chunks, scene_texts, out, work,
+                                       reel_id=args.reel_id)
     ok, report = quality.check_video(out)
     for name, c in report["checks"].items():
         print(f"[quality] {'PASS' if c['ok'] else 'FAIL'} {name}: {c['detail']}")

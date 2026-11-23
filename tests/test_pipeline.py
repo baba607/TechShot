@@ -25,7 +25,8 @@ sys.path.insert(0, str(REPO_ROOT))
 
 import config  # noqa: E402
 from src import captions, library, news, quality, script as script_mod, verify  # noqa: E402
-from src import voice as voice_mod  # noqa: E402
+from src import latin_fix, trim, voice as voice_mod  # noqa: E402
+from src import video as video_mod  # noqa: E402
 from src.publish import facebook, instagram, youtube  # noqa: E402
 
 MOCK_RSS = """<?xml version="1.0" encoding="UTF-8"?>
@@ -215,6 +216,9 @@ class TestVoice(unittest.TestCase):
         self.assertEqual(config.KOKORO_VOICE_FEMALE, "hf_alpha")
         self.assertEqual(config.KOKORO_REPO, "https://github.com/baba607/kokoro")
         self.assertEqual(config.KOKORO_MODEL, "hexgrad/Kokoro-82M")
+        self.assertEqual(config.KOKORO_SPEED, 1.01)
+        self.assertEqual(config.EDGE_TTS_VOICE, "hi-IN-MadhurNeural")
+        self.assertTrue(config.MUSIC_ENABLED)
 
     def test_resolve_voice(self):
         self.assertEqual(voice_mod.resolve_voice("male"), "hm_omega")
@@ -229,6 +233,78 @@ class TestVoice(unittest.TestCase):
                     "Chatterbox", "voicestudio", "VoiceStudio"):
             self.assertNotIn(bad, code)
 
+    def test_kokoro_speed_passed_to_runner(self):
+        # synthesize_kokoro must pass --speed 1.01 to the runner script.
+        tmp = Path(tempfile.mkdtemp())
+        out = tmp / "out.wav"
+        out.touch()
+        try:
+            seen = {}
+
+            def fake_run(cmd, input_text=None):
+                seen["cmd"] = cmd
+                return mock.Mock(returncode=0, stderr=b"")
+
+            with mock.patch.object(voice_mod, "_run", fake_run):
+                voice_mod.synthesize_kokoro("गूगल।", out)
+            self.assertIn("--speed", seen["cmd"])
+            self.assertIn("1.01", seen["cmd"])
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_kokoro_runner_accepts_speed_flag(self):
+        proc = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "src/kokoro_tts.py"), "--help"],
+            capture_output=True, text=True)
+        self.assertEqual(proc.returncode, 0)
+        self.assertIn("--speed", proc.stdout)
+
+    def test_edge_runner_accepts_voice_flag(self):
+        proc = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "src/edge_tts.py"), "--help"],
+            capture_output=True, text=True)
+        self.assertEqual(proc.returncode, 0)
+        self.assertIn("hi-IN-MadhurNeural", proc.stdout)
+
+    def test_edge_tts_command(self):
+        tmp = Path(tempfile.mkdtemp())
+        out = tmp / "out.wav"
+        out.touch()
+        try:
+            seen = {}
+
+            def fake_run(cmd, input_text=None):
+                seen["cmd"] = cmd
+                return mock.Mock(returncode=0, stderr=b"")
+
+            with mock.patch.object(voice_mod, "_run", fake_run):
+                voice_mod.synthesize_edge("गूगल।", out)
+            cmd = " ".join(seen["cmd"])
+            self.assertIn("edge_tts.py", cmd)
+            self.assertIn("hi-IN-MadhurNeural", cmd)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_fallback_order_kokoro_edge_piper(self):
+        # Kokoro fails -> edge-tts is tried next (mocked, no network) and
+        # wins; Piper is never reached.
+        tmp = Path(tempfile.mkdtemp())
+        out = tmp / "out.wav"
+        out.touch()
+        try:
+            with mock.patch.object(voice_mod, "synthesize_kokoro",
+                                   side_effect=RuntimeError("no kokoro")), \
+                 mock.patch.object(voice_mod, "synthesize_edge",
+                                   return_value=out), \
+                 mock.patch.object(voice_mod, "synthesize_piper",
+                                   side_effect=AssertionError("piper called")):
+                path, engine = voice_mod.synthesize("गूगल।", out,
+                                                    engine="kokoro")
+                self.assertEqual(engine, "edge-tts")
+                self.assertEqual(path, out)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
     def test_kokoro_failure_falls_back_to_piper(self):
         # Simulate Kokoro missing: runner fails -> Piper used (if installed).
         venv_py = Path.home() / "workspace/tech-shot/venv/bin/python"
@@ -240,6 +316,8 @@ class TestVoice(unittest.TestCase):
         try:
             with mock.patch.object(voice_mod, "synthesize_kokoro",
                                    side_effect=RuntimeError("kokoro missing")), \
+                 mock.patch.object(voice_mod, "synthesize_edge",
+                                   side_effect=RuntimeError("no edge-tts")), \
                  mock.patch.object(config, "PIPER_PYTHON", str(venv_py)):
                 path, engine = voice_mod.synthesize(
                     "गूगल ने नया मॉडल लॉन्च किया है।", out, engine="kokoro")
@@ -254,10 +332,194 @@ class TestVoice(unittest.TestCase):
         try:
             with mock.patch.object(voice_mod, "synthesize_kokoro",
                                    side_effect=RuntimeError("no kokoro")), \
+                 mock.patch.object(voice_mod, "synthesize_edge",
+                                   side_effect=RuntimeError("no edge-tts")), \
                  mock.patch.object(voice_mod, "synthesize_piper",
                                    side_effect=RuntimeError("no piper")):
                 with self.assertRaises(RuntimeError):
                     voice_mod.synthesize("गूगल।", tmp / "x.wav", engine="kokoro")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
+class TestLatinFix(unittest.TestCase):
+    def test_dictionary_tech_terms(self):
+        self.assertEqual(latin_fix.fix_latin_words("GTA 6 आ गया"),
+                         "जीटीए 6 आ गया")
+        self.assertEqual(latin_fix.fix_latin_words("PS5 पर खेलो"),
+                         "पीएस5 पर खेलो")
+        self.assertEqual(latin_fix.fix_latin_words("Instagram पर Follow करो"),
+                         "इंस्टाग्राम पर फॉलो करो")
+        self.assertEqual(latin_fix.fix_latin_words("Subscribe karo, AI news"),
+                         "सब्सक्राइब करो, एआई न्यूज़")
+        self.assertEqual(latin_fix.fix_latin_words("212 GB storage"),
+                         "212 जीबी स्टोरेज")
+        self.assertEqual(latin_fix.fix_latin_words("Metacritic 99"),
+                         "मेटाक्रिटिक 99")
+        self.assertEqual(latin_fix.fix_latin_words("YouTube Shorts"),
+                         "यूट्यूब शॉट्स")
+
+    def test_case_insensitive(self):
+        self.assertEqual(latin_fix.fix_latin_words("gta"), "जीटीए")
+        self.assertEqual(latin_fix.fix_latin_words("GtA"), "जीटीए")
+
+    def test_devanagari_and_digits_untouched(self):
+        text = "गूगल ने 5999 रुपये में लॉन्च किया।"
+        self.assertEqual(latin_fix.fix_latin_words(text), text)
+        self.assertEqual(latin_fix.fix_latin_words("212"), "212")
+        self.assertEqual(latin_fix.fix_latin_words(""), "")
+
+    def test_unknown_word_transliterated(self):
+        # Generic fallback: readable Devanagari, no Latin letters left.
+        out = latin_fix.fix_latin_words("hello world")
+        self.assertNotRegex(out, r"[A-Za-z]")
+        self.assertEqual(out, "हेल्लो वर्ल्ड")
+
+    def test_mixed_sentence(self):
+        got = latin_fix.fix_latin_words(
+            "इंतज़ार खत्म! GTA 6 आ गया — 19 नवंबर को PS5 पर लॉन्च।")
+        self.assertEqual(got, "इंतज़ार खत्म! जीटीए 6 आ गया — 19 नवंबर को पीएस5 पर लॉन्च।")
+
+
+class TestTrim(unittest.TestCase):
+    def _make_wav(self, path, segments, rate=24000):
+        """segments: list of (kind, seconds) with kind 'tone' or 'silence'."""
+        import math
+        import struct
+        import wave
+        samples = []
+        for kind, sec in segments:
+            n = int(sec * rate)
+            if kind == "tone":
+                samples += [int(12000 * math.sin(2 * math.pi * 440 * t / rate))
+                            for t in range(n)]
+            else:
+                samples += [0] * n
+        with wave.open(str(path), "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(rate)
+            w.writeframes(struct.pack(f"<{len(samples)}h", *samples))
+        return len(samples) / rate
+
+    def test_stdlib_trim_edges_and_pause(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            wav = tmp / "t.wav"
+            self._make_wav(wav, [("silence", 1.0), ("tone", 1.0),
+                                 ("silence", 1.0), ("tone", 0.5),
+                                 ("silence", 0.8)])
+            with mock.patch.object(trim, "_auto_editor_available",
+                                  return_value=False):
+                self.assertTrue(trim.trim_wav(wav, max_silence=0.35))
+            import wave
+            with wave.open(str(wav), "rb") as w:
+                dur = w.getnframes() / w.getframerate()
+            # 0.35 + 1.0 + 0.35 + 0.5 + 0.35 = 2.55s (± one 10ms window)
+            self.assertAlmostEqual(dur, 2.55, delta=0.05)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_trim_fail_safe_on_garbage(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            bad = tmp / "bad.wav"
+            bad.write_bytes(b"not a wav at all")
+            self.assertFalse(trim.trim_wav(bad))
+            self.assertEqual(bad.read_bytes(), b"not a wav at all")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_trim_prefers_auto_editor_when_present(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            wav = tmp / "t.wav"
+            self._make_wav(wav, [("tone", 0.5)])
+            with mock.patch.object(trim, "_auto_editor_available",
+                                  return_value=True), \
+                 mock.patch.object(trim, "_trim_with_auto_editor") as ae, \
+                 mock.patch.object(trim, "_trim_with_stdlib") as std:
+                self.assertTrue(trim.trim_wav(wav))
+                ae.assert_called_once()
+                std.assert_not_called()
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
+class TestMusic(unittest.TestCase):
+    def test_gap_between_is_008(self):
+        self.assertEqual(video_mod.GAP_BETWEEN, 0.08)
+
+    def test_tracks_bundled(self):
+        tracks = sorted(config.MUSIC_DIR.glob("*.mp3"))
+        self.assertGreaterEqual(len(tracks), 3)
+        names = {t.name for t in tracks}
+        self.assertIn("ancient-power-of-serpents.mp3", names)
+        self.assertIn("dark-ambient.mp3", names)
+        self.assertIn("island-mystery.mp3", names)
+
+    def test_pick_track_deterministic_and_rotates(self):
+        a = video_mod.pick_music_track("20261123-gta-6-launched-19-november")
+        b = video_mod.pick_music_track("20261123-gta-6-launched-19-november")
+        self.assertEqual(a, b)
+        self.assertTrue(a.exists())
+        picks = {video_mod.pick_music_track(f"reel-{i}").name
+                 for i in range(20)}
+        self.assertGreater(len(picks), 1)  # rotation actually varies
+
+    def test_music_filter_args(self):
+        filt = video_mod._music_filter(total=40.0, sample_rate=24000)
+        self.assertIn("volume=0.25", filt)
+        self.assertIn("afade=t=in:st=0:d=2.0", filt)
+        self.assertIn("afade=t=out:st=36.00:d=4.0", filt)
+        self.assertIn("amix=inputs=2", filt)
+        self.assertIn("alimiter=limit=0.95", filt)
+        self.assertIn("[aout]", filt)
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg not available")
+    def test_build_reel_with_music(self):
+        import math
+        import struct
+        import wave
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            rate = 24000
+
+            def tone_wav(path, sec, freq=440):
+                s = [int(12000 * math.sin(2 * math.pi * freq * t / rate))
+                     for t in range(int(sec * rate))]
+                with wave.open(str(path), "wb") as w:
+                    w.setnchannels(1)
+                    w.setsampwidth(2)
+                    w.setframerate(rate)
+                    w.writeframes(struct.pack(f"<{len(s)}h", *s))
+
+            c1, c2 = tmp / "c1.wav", tmp / "c2.wav"
+            tone_wav(c1, 2.0)
+            tone_wav(c2, 2.0)
+            images = []
+            for i in (1, 2):
+                img = tmp / f"scene_{i}.png"
+                subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
+                                "-i", "color=c=0x336699:s=1080x1920:d=1",
+                                "-frames:v", "1", str(img)], check=True)
+                images.append(img)
+            chunks = [("s0c0", c1, 2.0, 0), ("s1c0", c2, 2.0, 1)]
+            out = tmp / "out.mp4"
+            video_mod.build_reel(images, chunks, ["SCENE 1", "SCENE 2"],
+                                 out, tmp / "work",
+                                 reel_id="20261123-test-music")
+            self.assertTrue(out.exists())
+            # The 6.25s test reel is shorter than the 30-45s quality
+            # target, so check the individual streams, not overall ok.
+            _ok, report = quality.check_video(out)
+            checks = report["checks"]
+            self.assertTrue(checks["playable"]["ok"])
+            self.assertTrue(checks["video_stream"]["ok"])
+            self.assertTrue(checks["audio_stream"]["ok"])
+            self.assertEqual(checks["resolution"]["detail"], "1080x1920")
+            self.assertTrue(checks["av_sync"]["ok"])
+            self.assertAlmostEqual(report["duration"], 6.25, delta=0.1)
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -328,6 +590,8 @@ class TestWorkflows(unittest.TestCase):
         build = (wf_dir / "build.yml").read_text(encoding="utf-8")
         self.assertIn("baba607/kokoro", build)
         self.assertIn("hexgrad/kokoro", build)  # upstream fallback present
+        self.assertIn("edge-tts", build)  # 2nd fallback voice
+        self.assertIn("auto-editor", build)  # silence trim
 
     def test_no_secret_values_in_repo(self):
         # The repo must contain secret NAMES only — never real IDs/tokens.
