@@ -15,9 +15,9 @@
       "date": "2026-11-23"
     }
   ],
-  "status": "APPROVAL_PENDING",
+  "status": "APPROVED",
   "created_at": "2026-11-23T15:14:43.231588+00:00",
-  "updated_at": "2026-11-23T15:31:45.784169+00:00",
+  "updated_at": "2026-11-23T16:21:52.754096+00:00",
   "history": [
     {
       "at": "2026-11-23T15:14:43.231609+00:00",
@@ -48,6 +48,12 @@
       "from": "VIDEO_READY",
       "to": "APPROVAL_PENDING",
       "note": "Watch final_video.mp4, then approve/reject."
+    },
+    {
+      "at": "2026-11-23T16:21:52.754064+00:00",
+      "from": "APPROVAL_PENDING",
+      "to": "APPROVED",
+      "note": "Human approved after watching."
     }
   ],
   "publish": {}
