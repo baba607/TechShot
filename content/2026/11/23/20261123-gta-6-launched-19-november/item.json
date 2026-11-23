@@ -1,0 +1,57 @@
+{
+  "id": "20261123-gta-6-launched-19-november",
+  "title": "GTA 6 launched — 19 November",
+  "summary": "GTA VI launched 19 Nov 2026 on PS5 + Xbox Series X/S; Metacritic 99; India price Rs 5,999; 212 GB; no PC version.",
+  "score": 9.0,
+  "sources": [
+    {
+      "url": "https://www.gadgets360.com/games/features/gta-6-launch-tonight-india-release-time-price-platforms-preload-details-everything-you-need-to-know-12344479",
+      "name": "Gadgets360",
+      "date": "2026-11-18"
+    },
+    {
+      "url": "https://m.economictimes.com/news/new-updates/gta-6-launches-in-india-after-13-year-wait-check-price-launch-day-benefits-download-size-playstation-or-xbox-pc-version-and-gta-6-multiplayer-online-release-dates/articleshow/135975791.cms",
+      "name": "The Economic Times",
+      "date": "2026-11-19"
+    },
+    {
+      "url": "https://www.thehypemagazine.com/2026/11/18/gta-6-reviews-99-metacritic-critics/",
+      "name": "The Hype Magazine",
+      "date": "2026-11-18"
+    },
+    {
+      "url": "https://thebostonreport.com/2026/11/21/gta-6-reviews-99-metacritic-day-one-sales/",
+      "name": "The Boston Report",
+      "date": "2026-11-21"
+    },
+    {
+      "url": "https://www.thenationalnews.com/arts-culture/pop-culture/2025/11/07/grand-theft-auto-6-release-date-delayed/",
+      "name": "The National News",
+      "date": "2025-11-07"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-23T17:15:51.234311+00:00",
+  "updated_at": "2026-11-23T17:15:51.235824+00:00",
+  "history": [
+    {
+      "at": "2026-11-23T17:15:51.234333+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-23T17:15:51.235268+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Launch + reviews + price verified against 5 sources, 5 domains."
+    },
+    {
+      "at": "2026-11-23T17:15:51.235814+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Script finished; scenes ready."
+    }
+  ],
+  "publish": {}
+}

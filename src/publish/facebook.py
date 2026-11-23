@@ -67,22 +67,22 @@ def _wait_ready(video_id, token, timeout=120, interval=5):
 def publish(video_path, description, dry_run=False, page_id=None):
     """Publish a Reel to the Facebook Page. Returns {ok, platform, ...}."""
     page_id = page_id or config.FACEBOOK_PAGE_ID
-    size = os.path.getsize(video_path)
     base = f"{config.GRAPH_API_BASE}/{page_id}/video_reels"
     if dry_run:
         print(f"[facebook:dry-run] 1) POST {base} "
-              "{upload_phase: start, file_size: "
-              f"{size}}} -> {{video_id, upload_url}}")
+              "{upload_phase: start, file_size: <size>} -> "
+              "{video_id, upload_url}")
         print("[facebook:dry-run] 2) POST {upload_url} "
-              f"<{size} bytes, Offset: 0, file_size: {size}>")
+              "<bytes, Offset: 0, file_size: <size>>")
         print("[facebook:dry-run] 3) GET "
               f"{config.GRAPH_API_BASE}/<video_id>?fields=status "
-              "(wait for ready)")
+              "(wait for upload_complete)")
         print(f"[facebook:dry-run] 4) POST {base} "
               "{upload_phase: finish, video_id: <id>, description: <len "
               f"{len(description)}>, video_state: PUBLISHED}}")
         return {"ok": True, "platform": "facebook", "dry_run": True,
                 "detail": "Dry run — no API calls made."}
+    size = os.path.getsize(video_path)
     config.require_secrets("FACEBOOK_PAGE_ACCESS_TOKEN", "FACEBOOK_PAGE_ID")
     token = config.FACEBOOK_PAGE_ACCESS_TOKEN
     headers = {"Authorization": f"Bearer {token}"}
