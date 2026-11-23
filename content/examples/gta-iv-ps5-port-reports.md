@@ -18,19 +18,19 @@ GTA 4 PS5 par kab aayega? Reports kya keh rahe hain!
 ## HOOK (0–3 sec)
 "GTA 4 PS5 par kab aayega? Reports me phir se halchal hai!"
 
-## VOICEOVER SCRIPT (Roman Hindi) — ~42 sec, bolne layak
+## VOICEOVER SCRIPT (Roman Hindi) — ~41 sec, bolne layak
 "GTA 4 PS5 par kab aayega? Reports ke mutabik, Rockstar GTA 4 Enhanced par kaam kar raha hai, lekin official announcement nahi hai.
-GTA 4 2008 me aaya tha — Niko Bellic aur Liberty City ne isko legend bana diya.
-Aaj khelna ho to Xbox Series X/S par backward compatibility se chal jata hai, PC par Complete Edition milta hai. PS5 par abhi koi version nahi hai.
+GTA 4 2008 me aaya tha — Niko Bellic aur Liberty City ne legend bana diya.
+Aaj Xbox Series X/S par backward compatibility se chal jata hai, PC par Complete Edition milta hai. PS5 par abhi koi version nahi hai.
 Reports sach hue to Liberty City wapas!
-Tech Updates ke liye Tech Shot ko follow karo!"
+Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari) — TTS input, Kokoro/Piper ko yehi chahiye
 "जीटीए 4 पीएस5 पर कब आएगा? रिपोर्ट्स के मुताबिक, रॉकस्टार जीटीए 4 एनहांस्ड पर काम कर रहा है, लेकिन ऑफिशियल अनाउंसमेंट नहीं है।
-जीटीए 4 2008 में आया था — निको बेलिक और लिबर्टी सिटी ने इसको लेजेंड बना दिया।
-आज खेलना हो तो एक्सबॉक्स सीरीज़ एक्स/एस पर बैकवर्ड कम्पैटिबिलिटी से चल जाता है, पीसी पर कम्प्लीट एडिशन मिलता है। पीएस5 पर अभी कोई वर्ज़न नहीं है।
+जीटीए 4 2008 में आया था — निको बेलिक और लिबर्टी सिटी ने लेजेंड बना दिया।
+आज एक्सबॉक्स सीरीज़ एक्स/एस पर बैकवर्ड कम्पैटिबिलिटी से चल जाता है, पीसी पर कम्प्लीट एडिशन मिलता है। पीएस5 पर अभी कोई वर्ज़न नहीं है।
 रिपोर्ट्स सच हुईं तो लिबर्टी सिटी वापस!
-टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+टेक शॉट को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
