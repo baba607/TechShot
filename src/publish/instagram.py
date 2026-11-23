@@ -22,6 +22,11 @@ import config
 
 POLL_INTERVAL = 10
 POLL_MAX_ATTEMPTS = 60
+# Thumbnail frame for the Reels grid, in milliseconds. Instagram uses the
+# video's first frame as the thumbnail by default — our videos used to
+# fade in from black, so all 3 reels showed as black tiles (2026-11-24).
+# 2000 ms lands safely inside scene 1 on every reel (30-45 s long).
+THUMB_OFFSET_MS = 2000
 
 
 def _headers():
@@ -42,7 +47,7 @@ def publish(video_url, caption, dry_run=False, ig_user_id=None):
         print("[instagram:dry-run] POST "
               f"{config.GRAPH_API_BASE}/{ig_user_id}/media "
               "{media_type: REELS, video_url: <hidden>, caption: <len "
-              f"{len(caption)}>}}")
+              f"{len(caption)}>, thumb_offset: {THUMB_OFFSET_MS}}}")
         print("[instagram:dry-run] poll container status until FINISHED, "
               "then POST media_publish")
         return {"ok": True, "platform": "instagram", "dry_run": True,
@@ -51,7 +56,9 @@ def publish(video_url, caption, dry_run=False, ig_user_id=None):
     base = config.GRAPH_API_BASE
     resp = requests.post(f"{base}/{ig_user_id}/media", headers=_headers(),
                          data={"media_type": "REELS", "video_url": video_url,
-                               "caption": caption}, timeout=60)
+                               "caption": caption,
+                               "thumb_offset": THUMB_OFFSET_MS},
+                         timeout=60)
     if resp.status_code != 200:
         return {"ok": False, "platform": "instagram",
                 "detail": f"Container create failed ({resp.status_code}): "

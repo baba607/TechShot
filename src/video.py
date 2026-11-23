@@ -201,10 +201,14 @@ def build_reel(scene_images, chunks, scene_texts, out_path, work_dir):
         for s in segs:
             f.write(f"file '{s}'\n")
     out_path = Path(out_path)
+    # NOTE: no fade-in here on purpose. The old chain had
+    # fade=t=in:st=0:d=0.4, which made frame 0 pure black — and Instagram
+    # uses frame 0 as the profile-grid thumbnail, so all 3 reels showed
+    # as black tiles (2026-11-24). Fade-out at the end is kept.
     run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
          "-i", str(concat_list), "-i", str(full_audio),
          "-filter_complex",
-         "[0:v]fade=t=in:st=0:d=0.4,fade=t=out:st={:.2f}:d=0.6,"
+         "[0:v]fade=t=out:st={:.2f}:d=0.6,"
          "subtitles={}:fontsdir=/usr/share/fonts[v]".format(
              total - 0.6, str(ass).replace(":", "\\:")),
          "-map", "[v]", "-map", "1:a", "-c:v", "libx264", "-preset", "medium",
