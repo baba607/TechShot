@@ -63,17 +63,14 @@ jobs:
           echo "TECHSHOT_VIDEO_PUBLIC_URL=$URL" >> "$GITHUB_ENV"
 
       - name: Publish (per platform, explicit approval)
+        # One invocation with ALL platforms: pipeline.py loops internally
+        # and sets the status once at the end. Calling it once per
+        # platform used to poison the rest — the first failure set the
+        # reel to FAILED and the next invocation refused to run.
         run: |
-          IFS=',' read -ra PLATS <<< "${{ inputs.platforms }}"
-          FAIL=0
-          for p in "${PLATS[@]}"; do
-            p=$(echo "$p" | xargs)
-            python pipeline.py publish --id "${{ inputs.reel_id }}" \
-              --platform "$p" --approve || FAIL=1
-          done
-          # One platform failing must not skip the rest (bash -e used to
-          # stop the loop), but the step still fails if any platform did.
-          exit $FAIL
+          PLATS=($(echo "${{ inputs.platforms }}" | tr ',' ' '))
+          python pipeline.py publish --id "${{ inputs.reel_id }}" \
+            --platform "${PLATS[@]}" --approve
 
       - name: Commit publish status
         if: always()
