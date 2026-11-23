@@ -223,7 +223,7 @@ def _music_filter(total, sample_rate):
         f"volume={vol},afade=t=in:st=0:d={fade_in},"
         f"afade=t=out:st={total - fade_out:.2f}:d={fade_out},"
         f"atrim=0:{total:.2f}[music];"
-        f"[1:a][music]amix=inputs=2:duration=first,"
+        f"[1:a][music]amix=inputs=2:duration=first:normalize=0,"
         f"alimiter=limit={limit}[aout]")
 
 
