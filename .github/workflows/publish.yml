@@ -1,0 +1,70 @@
+# Tech Shot — publish a reel (manual only, approval-gated).
+# A human dispatches this with: reel id + platforms + approve=yes.
+# The job runs ONLY when approve == 'yes' AND the reel's status is APPROVED
+# (the CLI re-checks status — a reel that was never human-approved cannot
+# publish even if this workflow is dispatched). Nothing here is scheduled.
+name: Publish reel
+
+on:
+  workflow_dispatch:
+    inputs:
+      reel_id:
+        description: "Reel id (content/YYYY/MM/DD/<id>) — must be APPROVED"
+        required: true
+        type: string
+      platforms:
+        description: "Comma-separated: instagram,facebook,youtube"
+        required: true
+        default: "instagram"
+        type: string
+      approve:
+        description: "Type 'yes' to publish (approval mode)"
+        required: true
+        default: "no"
+        type: choice
+        options: [no, yes]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: ${{ inputs.approve == 'yes' }}
+    runs-on: ubuntu-latest
+    env:
+      # Secrets — values live ONLY in GitHub Secrets, never in this file.
+      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+      FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+      META_APP_ID: ${{ secrets.META_APP_ID }}
+      YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Publish (per platform, explicit approval)
+        run: |
+          IFS=',' read -ra PLATS <<< "${{ inputs.platforms }}"
+          for p in "${PLATS[@]}"; do
+            p=$(echo "$p" | xargs)
+            python pipeline.py publish --id "${{ inputs.reel_id }}" \
+              --platform "$p" --approve
+          done
+
+      - name: Commit publish status
+        if: always()
+        run: |
+          git config user.name "tech-shot-bot"
+          git config user.email "tech-shot-bot@users.noreply.github.com"
+          git add content/
+          git diff --cached --quiet || git commit -m "Publish ${{ inputs.reel_id }}: ${{ inputs.platforms }}"
+          git push || true

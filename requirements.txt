@@ -1,0 +1,15 @@
+# Tech Shot — runtime dependencies (all free).
+# Install:  pip install -r requirements.txt
+requests>=2.31
+PyYAML>=6.0          # only used by tests to validate workflow YAML
+
+# Optional, only needed for the Kokoro voice step (PRIMARY, free, open-weight):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install "kokoro @ git+https://github.com/baba607/kokoro.git" soundfile
+#   (fork of https://github.com/hexgrad/kokoro — if the fork URL fails,
+#   install from upstream hexgrad/kokoro instead; see .github/workflows/build.yml)
+#   or set TECHSHOT_KOKORO_REPO to another fork URL first.
+# Optional, only needed for the Piper voice step (FALLBACK, offline Hindi TTS):
+#   pip install piper-tts
+# The Piper voice model (.onnx) is downloaded separately and is NOT committed.
+#   https://github.com/rhasspy/piper-voices (hi_IN-pratham-medium)

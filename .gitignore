@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtualenvs
+venv/
+.venv/
+
+# Secrets — NEVER commit
+.env
+*.env
+
+# Generated media (large; rebuilt per reel). Scripts (.md) and item.json
+# in content/ ARE committed — videos/audio/images are not.
+*.mp4
+*.wav
+*.webm
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.onnx
+*.onnx.json
+
+# Per-reel build scratch
+work/
+build/
+frames/
+segments.txt
+subs.ass

@@ -1,0 +1,64 @@
+# Tech Shot — build a reel in CI (manual only).
+# Triggered by a human with a reel id whose script is finished. Installs
+# Kokoro (PRIMARY voice) from the user's fork, falling back to upstream
+# hexgrad/kokoro if the fork fails to clone; Piper is the runtime fallback
+# if Kokoro voice generation itself fails. The finished video is uploaded
+# as an artifact for a human to watch — it is NOT published here.
+name: Build reel
+
+on:
+  workflow_dispatch:
+    inputs:
+      reel_id:
+        description: "Reel id (content/YYYY/MM/DD/<id>), script must be finished"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TECHSHOT_KOKORO_REPO: ${{ vars.KOKORO_REPO }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system deps (ffmpeg + espeak for Kokoro phonemization)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng fonts-dejavu-core
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Install Kokoro (primary voice) — fork first, upstream fallback
+        run: |
+          REPO="${TECHSHOT_KOKORO_REPO:-https://github.com/baba607/kokoro}"
+          UPSTREAM="https://github.com/hexgrad/kokoro"
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet "kokoro @ git+${REPO}.git" soundfile \
+            || { echo "Fork install failed, falling back to upstream $UPSTREAM"; \
+                 pip install --quiet "kokoro @ git+${UPSTREAM}.git" soundfile; }
+
+      - name: Install Piper (fallback voice only)
+        run: pip install --quiet piper-tts || echo "Piper install failed — Kokoro only"
+
+      - name: Build reel (voice -> video -> quality check)
+        env:
+          TECHSHOT_PIPER_MODEL: /tmp/hi_IN-pratham-medium.onnx
+        run: python pipeline.py build "${{ inputs.reel_id }}"
+
+      - name: Upload finished video for human review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reel-${{ inputs.reel_id }}
+          path: content/**/final_video.mp4
+          if-no-files-found: error
+          retention-days: 7

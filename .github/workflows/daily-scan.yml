@@ -1,0 +1,52 @@
+# Tech Shot — daily news scan (NO publishing).
+# Runs every morning (10:00 IST), discovers + verifies news and commits
+# DRAFT scripts. A human still writes/finishes the voiceover and approves
+# every video — this workflow never builds video and never publishes.
+name: Daily news scan
+
+on:
+  schedule:
+    - cron: "30 4 * * *"   # 04:30 UTC = 10:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scan news + write draft scripts
+        run: python pipeline.py scan --limit 10
+
+      - name: Commit draft scripts
+        run: |
+          git config user.name "tech-shot-bot"
+          git config user.email "tech-shot-bot@users.noreply.github.com"
+          git add content/
+          git diff --cached --quiet || git commit -m "Daily scan: draft scripts $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Update tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="Daily scan — $(date -u +%Y-%m-%d)"
+          BODY="Scan ran. New draft scripts are in content/$(date -u +%Y/%m/%d)/.
+          Review each draft, finish the voiceover, then build + approve before anything publishes."
+          NUM=$(gh issue list --label daily-scan --state open --json number --jq '.[0].number')
+          if [ -z "$NUM" ]; then
+            gh issue create --title "$TITLE" --body "$BODY" --label daily-scan
+          else
+            gh issue comment "$NUM" --body "$BODY"
+          fi
