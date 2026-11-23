@@ -73,7 +73,7 @@ KOKORO_VOICE_FEMALE = os.environ.get(
     "TECHSHOT_VOICE_FEMALE", os.environ.get("VOICE_FEMALE", "hf_alpha")
 )
 KOKORO_LANG = os.environ.get("TECHSHOT_KOKORO_LANG", "h")  # 'h' = Hindi
-KOKORO_SPEED = float(os.environ.get("TECHSHOT_KOKORO_SPEED", "1.01"))
+KOKORO_SPEED = float(os.environ.get("TECHSHOT_KOKORO_SPEED", "0.95"))
 # Fallback voice: edge-tts (Microsoft neural, free, no key). Voice is the
 # male Hindi neural voice; it only needs network at build time (CI has it).
 EDGE_TTS_VOICE = os.environ.get("TECHSHOT_EDGE_TTS_VOICE", "hi-IN-MadhurNeural")

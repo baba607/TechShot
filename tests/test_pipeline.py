@@ -216,7 +216,8 @@ class TestVoice(unittest.TestCase):
         self.assertEqual(config.KOKORO_VOICE_FEMALE, "hf_alpha")
         self.assertEqual(config.KOKORO_REPO, "https://github.com/baba607/kokoro")
         self.assertEqual(config.KOKORO_MODEL, "hexgrad/Kokoro-82M")
-        self.assertEqual(config.KOKORO_SPEED, 1.01)
+        self.assertEqual(config.KOKORO_SPEED, 0.95)  # slowed 2026-11-24:
+        # user heard 1.01x as too fast next to long inter-scene pauses
         self.assertEqual(config.EDGE_TTS_VOICE, "hi-IN-MadhurNeural")
         self.assertTrue(config.MUSIC_ENABLED)
 
@@ -234,7 +235,7 @@ class TestVoice(unittest.TestCase):
             self.assertNotIn(bad, code)
 
     def test_kokoro_speed_passed_to_runner(self):
-        # synthesize_kokoro must pass --speed 1.01 to the runner script.
+        # synthesize_kokoro must pass --speed 0.95 to the runner script.
         tmp = Path(tempfile.mkdtemp())
         out = tmp / "out.wav"
         out.touch()
@@ -248,7 +249,7 @@ class TestVoice(unittest.TestCase):
             with mock.patch.object(voice_mod, "_run", fake_run):
                 voice_mod.synthesize_kokoro("गूगल।", out)
             self.assertIn("--speed", seen["cmd"])
-            self.assertIn("1.01", seen["cmd"])
+            self.assertIn("0.95", seen["cmd"])
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -447,8 +448,10 @@ class TestTrim(unittest.TestCase):
 
 
 class TestMusic(unittest.TestCase):
-    def test_gap_between_is_008(self):
-        self.assertEqual(video_mod.GAP_BETWEEN, 0.08)
+    def test_gap_between_is_020(self):
+        # 0.08 was breathless (user feedback 2026-11-24); sentences need
+        # room to breathe, while scene cuts stay tight (GAP_BEFORE/TAIL 0.10).
+        self.assertEqual(video_mod.GAP_BETWEEN, 0.20)
 
     def test_tracks_bundled(self):
         tracks = sorted(config.MUSIC_DIR.glob("*.mp3"))
@@ -510,8 +513,9 @@ class TestMusic(unittest.TestCase):
                                  out, tmp / "work",
                                  reel_id="20261123-test-music")
             self.assertTrue(out.exists())
-            # The 6.25s test reel is shorter than the 30-45s quality
+            # The 4.9s test reel is shorter than the 30-45s quality
             # target, so check the individual streams, not overall ok.
+            # (Was 6.25s before the 2026-11-24 pacing fix tightened the gaps.)
             _ok, report = quality.check_video(out)
             checks = report["checks"]
             self.assertTrue(checks["playable"]["ok"])
@@ -519,7 +523,7 @@ class TestMusic(unittest.TestCase):
             self.assertTrue(checks["audio_stream"]["ok"])
             self.assertEqual(checks["resolution"]["detail"], "1080x1920")
             self.assertTrue(checks["av_sync"]["ok"])
-            self.assertAlmostEqual(report["duration"], 6.25, delta=0.1)
+            self.assertAlmostEqual(report["duration"], 4.9, delta=0.1)
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 

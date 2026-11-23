@@ -18,12 +18,17 @@ from pathlib import Path
 
 import config
 
-GAP_BEFORE = 0.35   # silence before first chunk in a scene
-GAP_BETWEEN = 0.08  # silence between sentence chunks in a scene (Rahasya
-                    # Bharat: 0.08s — short enough that the narration does
-                    # not sound choppy; was 0.30s)
-TAIL = 0.45         # silence after last chunk in a scene (0.9 for end card)
-MIN_DUR = [3.0, 2.5, 3.0, 4.0, 3.5]  # per scene, seconds
+GAP_BEFORE = 0.10   # silence before first chunk in a scene
+GAP_BETWEEN = 0.20  # silence between sentence chunks in a scene —
+                    # 0.08 was breathless; sentences need room to breathe
+TAIL = 0.10         # silence after last chunk in a scene (0.30 for end card)
+MIN_DUR = [2.5, 2.0, 2.5, 2.8, 3.0]  # per scene, seconds — kept low so a
+                    # short chunk never leaves >~0.3s of dead air in its scene
+# NOTE (2026-11-24, user feedback on the v3 test video): the old values
+# (GAP_BEFORE 0.35, TAIL 0.45, end-card 0.9, MIN_DUR up to 4.0) left 0.8s
+# of music-only silence at every scene cut plus dead air in short scenes
+# — the user heard it as "lambe lambe pause" next to fast 1.01x speech.
+# The voice now flows across scene cuts like Rahasya Bharat's narration.
 
 # zoompan expressions per scene (0-3 alternate in/out; 4 = logo end card)
 ZOOMS = {
@@ -58,7 +63,7 @@ def layout_scenes(chunks):
     for i in range(n):
         durs = scene_chunks[i]
         span = (GAP_BEFORE + sum(durs) + GAP_BETWEEN * max(0, len(durs) - 1)
-                + (0.9 if i == n - 1 else TAIL))
+                + (0.30 if i == n - 1 else TAIL))
         dur = max(span, MIN_DUR[i] if i < len(MIN_DUR) else 3.0)
         scene_durs.append(dur)
         scene_bounds.append((t, t + dur))
