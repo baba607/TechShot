@@ -18,7 +18,7 @@ GTA 4 PS5 par kab aayega? Reports kya keh rahe hain!
 ## HOOK (0–3 sec)
 "GTA 4 PS5 par kab aayega? Reports me phir se halchal hai!"
 
-## VOICEOVER SCRIPT (Roman Hindi, ~40 sec, bolne layak)
+## VOICEOVER SCRIPT (Roman Hindi) — ~40 sec, bolne layak
 "GTA 4 PS5 par kab aayega? Reports ke mutabik, Rockstar ke andar GTA 4 Enhanced par kaam chal raha hai, lekin official announcement abhi tak kuch bhi nahi hai.
 Yaad rahe, GTA 4 2008 me aaya tha — Niko Bellic ki kahani aur Liberty City ne isko legend bana diya.
 Aaj khelna ho to Xbox Series X ya S par backward compatibility se chal jata hai, aur PC par Complete Edition milta hai. PS5 par abhi koi official version nahi hai.

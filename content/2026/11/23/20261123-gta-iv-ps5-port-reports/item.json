@@ -1,0 +1,57 @@
+{
+  "id": "20261123-gta-iv-ps5-port-reports",
+  "title": "GTA IV PS5 Port Reports",
+  "summary": "GTA IV PS5 port / GTA 4 Enhanced reports (Nov 2026) + how to play today; Rockstar has announced nothing.",
+  "score": 8,
+  "sources": [
+    {
+      "url": "https://www.techradar.com/gaming/while-we-wait-for-gta-6-rumors-suggest-that-gta-4-is-getting-a-ps5-and-xbox-series-x-launch-this-year-with-max-payne-3-to-follow",
+      "name": "TechRadar",
+      "date": "2025-05"
+    },
+    {
+      "url": "https://en.gamegpu.com/news/igry/rockstar-games-gotovit-remejki-red-dead-redemption-2-enhanced-i-gta-4-enhanced",
+      "name": "gamegpu",
+      "date": "2026-11-22"
+    },
+    {
+      "url": "https://en.gamegpu.com/news/igry/studiya-rockstar-games-planiruet-vypustit-remaster-grand-theft-auto-iv-na-dvizhke-shestoj-chasti",
+      "name": "gamegpu",
+      "date": "2026-11-18"
+    },
+    {
+      "url": "https://gzztb.com/new/gta-4-remaster-urged-exrockstar-niko-protagonist.html",
+      "name": "gzztb",
+      "date": "2026-11-08"
+    },
+    {
+      "url": "https://dailyrespawn.com/article/is-gta-iv-still-worth-playing-in-2026-why-niko-bellics-liberty-city-holds-up-bef",
+      "name": "DailyRespawn",
+      "date": "2026-11"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-23T16:27:10.276997+00:00",
+  "updated_at": "2026-11-23T16:27:10.278876+00:00",
+  "history": [
+    {
+      "at": "2026-11-23T16:27:10.277016+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-23T16:27:10.278341+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Reports-level: TechRadar + gamegpu + gzztb + DailyRespawn; port NOT confirmed by Rockstar."
+    },
+    {
+      "at": "2026-11-23T16:27:10.278868+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Script finished; scenes ready."
+    }
+  ],
+  "publish": {}
+}
