@@ -65,11 +65,15 @@ jobs:
       - name: Publish (per platform, explicit approval)
         run: |
           IFS=',' read -ra PLATS <<< "${{ inputs.platforms }}"
+          FAIL=0
           for p in "${PLATS[@]}"; do
             p=$(echo "$p" | xargs)
             python pipeline.py publish --id "${{ inputs.reel_id }}" \
-              --platform "$p" --approve
+              --platform "$p" --approve || FAIL=1
           done
+          # One platform failing must not skip the rest (bash -e used to
+          # stop the loop), but the step still fails if any platform did.
+          exit $FAIL
 
       - name: Commit publish status
         if: always()
