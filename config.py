@@ -73,7 +73,14 @@ KOKORO_VOICE_FEMALE = os.environ.get(
     "TECHSHOT_VOICE_FEMALE", os.environ.get("VOICE_FEMALE", "hf_alpha")
 )
 KOKORO_LANG = os.environ.get("TECHSHOT_KOKORO_LANG", "h")  # 'h' = Hindi
-KOKORO_SPEED = float(os.environ.get("TECHSHOT_KOKORO_SPEED", "0.95"))
+KOKORO_SPEED = float(os.environ.get("TECHSHOT_KOKORO_SPEED", "1.0"))
+# NOTE (2026-11-24): MUST stay 1.0. Passing an explicit speed != 1.0 to
+# this kokoro fork breaks the audio: each chunk comes out loud in its
+# first half and ~8dB too quiet in the second half (measured on the v3
+# 1.01x and v4 0.95x builds — half the narration inaudible under the
+# music, which is what the user heard as "speed jada hai + lambe pause").
+# v1 (no speed argument at all) was full voice and Ajay approved it.
+# kokoro_tts.py therefore omits the speed argument entirely when 1.0.
 # Fallback voice: edge-tts (Microsoft neural, free, no key). Voice is the
 # male Hindi neural voice; it only needs network at build time (CI has it).
 EDGE_TTS_VOICE = os.environ.get("TECHSHOT_EDGE_TTS_VOICE", "hi-IN-MadhurNeural")

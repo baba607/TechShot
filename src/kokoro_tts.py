@@ -27,9 +27,12 @@ def main():
     ap.add_argument("--lang", default="h", help="Kokoro language code ('h' = Hindi)")
     ap.add_argument("--model", default="hexgrad/Kokoro-82M",
                     help="Hugging Face model id")
-    ap.add_argument("--speed", type=float, default=1.01,
-                    help="Speech speed multiplier (1.01 = Rahasya Bharat, "
-                         "a touch slower than Kokoro's 1.0 default)")
+    ap.add_argument("--speed", type=float, default=1.0,
+                    help="Speech speed multiplier. MUST stay 1.0: passing any "
+                         "other value to this kokoro fork breaks the audio "
+                         "(each chunk loud in its first half, ~8dB too quiet "
+                         "in the second — measured on v3/v4). At 1.0 the "
+                         "argument is omitted entirely (v1's known-good path).")
     ap.add_argument("--out", required=True, help="Output .wav path")
     args = ap.parse_args()
 
@@ -56,13 +59,20 @@ def main():
 
     try:
         pipeline = KPipeline(lang_code=args.lang)
-        generator = pipeline(text, voice=args.voice, speed=args.speed)
-        audio = None
-        for _gs, _ps, audio_chunk in generator:
-            audio = audio_chunk  # single-chunk text in, single chunk out
-        if audio is None:
+        # At speed 1.0 omit the argument entirely (v1's known-good call);
+        # any other value breaks the audio in this fork (see config.py).
+        gen_kwargs = {"voice": args.voice}
+        if args.speed != 1.0:
+            gen_kwargs["speed"] = args.speed
+        generator = pipeline(text, **gen_kwargs)
+        # Concatenate ALL yielded chunks: a long sentence can yield
+        # several, and keeping only the last would lose the rest.
+        import numpy as np
+        parts = [audio_chunk for _gs, _ps, audio_chunk in generator]
+        if not parts:
             print("kokoro_tts: Kokoro returned no audio", file=sys.stderr)
             return 4
+        audio = (np.concatenate(parts) if len(parts) > 1 else parts[0])
         sf.write(args.out, audio, 24000)
     except Exception as exc:
         print(f"kokoro_tts: generation failed: {exc}", file=sys.stderr)

@@ -216,8 +216,9 @@ class TestVoice(unittest.TestCase):
         self.assertEqual(config.KOKORO_VOICE_FEMALE, "hf_alpha")
         self.assertEqual(config.KOKORO_REPO, "https://github.com/baba607/kokoro")
         self.assertEqual(config.KOKORO_MODEL, "hexgrad/Kokoro-82M")
-        self.assertEqual(config.KOKORO_SPEED, 0.95)  # slowed 2026-11-24:
-        # user heard 1.01x as too fast next to long inter-scene pauses
+        self.assertEqual(config.KOKORO_SPEED, 1.0)  # must stay 1.0:
+        # an explicit speed != 1.0 breaks the audio in this kokoro fork
+        # (v3 1.01x / v4 0.95x: second half of every chunk ~8dB too quiet)
         self.assertEqual(config.EDGE_TTS_VOICE, "hi-IN-MadhurNeural")
         self.assertTrue(config.MUSIC_ENABLED)
 
@@ -235,7 +236,7 @@ class TestVoice(unittest.TestCase):
             self.assertNotIn(bad, code)
 
     def test_kokoro_speed_passed_to_runner(self):
-        # synthesize_kokoro must pass --speed 0.95 to the runner script.
+        # synthesize_kokoro must pass --speed 1.0 to the runner script.
         tmp = Path(tempfile.mkdtemp())
         out = tmp / "out.wav"
         out.touch()
@@ -249,7 +250,7 @@ class TestVoice(unittest.TestCase):
             with mock.patch.object(voice_mod, "_run", fake_run):
                 voice_mod.synthesize_kokoro("गूगल।", out)
             self.assertIn("--speed", seen["cmd"])
-            self.assertIn("0.95", seen["cmd"])
+            self.assertIn("1.0", seen["cmd"])
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
