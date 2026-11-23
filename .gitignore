@@ -24,6 +24,13 @@ venv/
 *.onnx
 *.onnx.json
 
+# ...except per-reel SCENE images: the CI build needs them, and they are
+# made by Muse (not rebuildable in CI), so they MUST be committed.
+!content/**/scene_*.webp
+!content/**/scene_*.png
+!content/**/scene_*.jpg
+!content/**/scene_*.jpeg
+
 # Per-reel build scratch
 work/
 build/
