@@ -22,7 +22,7 @@ on:
         required: true
         default: "no"
         type: choice
-        options: [no, yes]
+        options: ["no", "yes"]
 
 permissions:
   contents: write
