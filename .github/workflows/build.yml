@@ -15,7 +15,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -62,3 +62,20 @@ jobs:
           path: content/**/final_video.mp4
           if-no-files-found: error
           retention-days: 7
+
+      # Host the video on a GitHub release (permanent public URL) — the
+      # publish workflow fetches it from here, and Instagram needs a
+      # public video URL. Artifacts expire in 7 days; releases don't.
+      - name: Host video on GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="reel-${{ inputs.reel_id }}"
+          MP4=$(find content -name 'final_video.mp4' | head -1)
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$MP4" --clobber
+          else
+            gh release create "$TAG" "$MP4" \
+              --title "Tech Shot reel ${{ inputs.reel_id }}" \
+              --notes "Reel video (Instagram needs a public URL)."
+          fi
