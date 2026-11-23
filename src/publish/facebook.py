@@ -8,7 +8,9 @@ Flow — the video_reels resumable upload (3 phases + a status check):
               (note: the header is "Offset", NOT "file_offset" — the
               server rejects file_offset with "Header Offset not
               convertable to unsigned long")
-  3. check:  GET /{video_id}?fields=status until video_status == ready
+  3. check:  GET /{video_id}?fields=status until video_status is
+              upload_complete (processing to "ready" only starts after
+              finish — waiting for "ready" here never moves)
   4. finish: POST /{page-id}/video_reels
               {upload_phase: finish, video_id, description,
                video_state: PUBLISHED} -> {id}
@@ -28,11 +30,14 @@ import requests
 import config
 
 
-def _wait_ready(video_id, token, timeout=180, interval=5):
-    """Poll GET /{video_id}?fields=status until video_status == ready.
+def _wait_ready(video_id, token, timeout=120, interval=5):
+    """Poll GET /{video_id}?fields=status until the video can be finished.
 
-    Returns {ok, detail}. A missing/unparseable status does not block —
-    the finish call will report if the video is not ready.
+    The video sits at video_status "upload_complete" after the bytes land
+    — processing to "ready" only starts once finish is called (the
+    180s wait for "ready" never moved). So "upload_complete" is good
+    enough to proceed; the finish call reports if the video is not
+    actually usable. Returns {ok, detail}.
     """
     deadline = time.time() + timeout
     last = "unknown"
@@ -49,8 +54,8 @@ def _wait_ready(video_id, token, timeout=180, interval=5):
             data = resp.json()
             st = data.get("status") or {}
             last = st.get("video_status") or data.get("video_status") or last
-            if last == "ready":
-                return {"ok": True, "detail": "video ready"}
+            if last in ("ready", "upload_complete"):
+                return {"ok": True, "detail": f"video {last}"}
             if last in ("upload_failed", "error", "expired"):
                 return {"ok": False,
                         "detail": f"Video status {last}: {resp.text[:300]}"}
