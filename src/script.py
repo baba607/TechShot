@@ -179,6 +179,10 @@ def from_markdown(md_text):
         or _section(md_text, "VOICEOVER SCRIPT (Roman Hindi)")
     script["voiceover"] = " ".join(
         line.strip(' "') for line in vo.splitlines() if line.strip())
+    vo_deva = _section(md_text, "VOICEOVER SCRIPT (Devanagari)") \
+        or _section(md_text, "VOICEOVER (Devanagari)")
+    script["voiceover_devanagari"] = " ".join(
+        line.strip(' "') for line in vo_deva.splitlines() if line.strip())
     # Sources: bullet lines with a URL under the Verification section.
     ver = _section(md_text, "Verification") or ""
     for m in re.finditer(r"\*\*Source \d+:\*\*\s*(.+?)\s*\((https?://[^)\s]+)\)", ver):

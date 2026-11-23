@@ -22,6 +22,14 @@ Saath me cybersecurity features bhi hain, taaki aapka kaam aur safe rahe.
 Agar aap Gemini use karte hain, to ye update aapke kaam ka hai.
 Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
+## VOICEOVER SCRIPT (Devanagari) — TTS input, Kokoro/Piper ko yehi chahiye
+"गूगल ने अपना नया एआई मॉडल लॉन्च कर दिया, जेमिनी 4 नियॉन!
+इसमें चार थिंकिंग लेवल्स हैं।
+मतलब एआई अब सवाल के हिसाब से सोच कर जवाब देगा, हल्के सवाल पर जल्दी, मुश्किल सवाल पर गहराई से।
+साथ में साइबर सिक्योरिटी फीचर्स भी हैं, ताकि आपका काम और सेफ रहे।
+अगर आप जेमिनी यूज़ करते हैं, तो ये अपडेट आपके काम का है।
+ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
 |---|---|---|---|

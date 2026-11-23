@@ -1,0 +1,42 @@
+{
+  "id": "20261123-google-gemini-4-neon",
+  "title": "Google Gemini 4 Neon",
+  "summary": "Google Gemini 4 Neon launch — 4 thinking levels + cybersecurity features.",
+  "score": 8,
+  "sources": [
+    {
+      "url": "https://www.gadgets360.com/ai/news?from=gea",
+      "name": "Gadgets360",
+      "date": "2026-11-19"
+    },
+    {
+      "url": "https://www.benchleader.com/releases",
+      "name": "BenchLeader",
+      "date": "2026-11-23"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-23T15:14:43.231588+00:00",
+  "updated_at": "2026-11-23T15:14:43.233351+00:00",
+  "history": [
+    {
+      "at": "2026-11-23T15:14:43.231609+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-23T15:14:43.232841+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified vs Gadgets360 + BenchLeader (headline-level)."
+    },
+    {
+      "at": "2026-11-23T15:14:43.233343+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Demo script finished; scenes ready."
+    }
+  ],
+  "publish": {}
+}
