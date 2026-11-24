@@ -1,0 +1,48 @@
+{
+  "id": "20261124-openai-offers-free-chatgpt-plus-to-indian-research",
+  "title": "OpenAI Offers Free ChatGPT Plus To Indian Researchers For 1 Year: Who Can Apply? - NDTV",
+  "summary": "OpenAI Offers Free ChatGPT Plus To Indian Researchers For 1 Year: Who Can Apply?&nbsp;&nbsp;NDTV",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOaUxMc3k1OGlIRXlqNVVCOXRFdVRhUlRkTVlvYmRuX2gyT1pDdVE5MkU5bGQxR1MyZ3djc2xjaERUNzZZX2k5QWxDRUlOYno2NVVjUnVraVZxUnJnSXNpeUpOb2NwRE10d3RCM05uaXNRX2FlT3puOFlPWm9VN3YxRS16d3p6Y0lWd0xja1ZidlJERXhLSzFGeTRMLTR0am82bHlUY1RoQUdDY2VQbUZBQjlUVVliN3I0T0HSAcIBQVVfeXFMTUVVZ3liTWVPQ3p6cmdMbzBBWG84RXg5TVdFRk9McXRVZVpDMzU5QUk2UFhzdzFlRmhKUlJUdGdocEJ4ZFBlbzZtc08wMmlic2xGeFo3RkRLSmgybTF1eFpHWm1pMnRQbkh0aDk2US1saDlMbGpGS1pCRjVvaTZmSlBhTzhRc19VRDJlckhfRGhzbFdhNjdZVVMtbjNMQmM3M0FQcnFoRHpRQnM3SS1JQ2tWby1Pczl3QlAxd2g0amo1dkE?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-20T02:33:29+00:00"
+    },
+    {
+      "url": "https://www.thehindubusinessline.com/info-tech/openai-to-offer-free-chatgpt-plus-access-to-academic-researchers-in-india-for-12-months/article71711116.ece",
+      "name": "The Hindu BusinessLine",
+      "date": "2026-11-17"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-24T04:38:59.349061+00:00",
+  "updated_at": "2026-11-24T04:43:07.295037+00:00",
+  "history": [
+    {
+      "at": "2026-11-24T04:38:59.349068+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-24T04:41:14.266617+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified against 2 source(s), 2 domain(s)."
+    },
+    {
+      "at": "2026-11-24T04:43:07.295027+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Polished script written — ready to build."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "VERIFIED",
+    "reasons": [
+      "Verified against 2 source(s), 2 domain(s)."
+    ]
+  }
+}
