@@ -43,7 +43,9 @@ def _now():
 
 def slugify(title):
     slug = re.sub(r"[^a-z0-9]+", "-", (title or "reel").lower()).strip("-")
-    return slug[:50] or "reel"
+    # Strip again AFTER truncating: cutting at 50 chars can leave a trailing
+    # hyphen (e.g. "...-app-"), which GitHub rejects as a release tag.
+    return slug[:50].strip("-") or "reel"
 
 
 def item_id(date=None, title="reel"):
