@@ -17,7 +17,7 @@
   ],
   "status": "PUBLISHED",
   "created_at": "2026-11-24T04:38:59.349061+00:00",
-  "updated_at": "2026-11-24T09:42:51.090921+00:00",
+  "updated_at": "2026-11-24T13:31:36.177172+00:00",
   "history": [
     {
       "at": "2026-11-24T04:38:59.349068+00:00",
@@ -66,20 +66,20 @@
     "instagram": {
       "ok": true,
       "platform": "instagram",
-      "media_id": "18147929296506067",
-      "detail": "Published Reel, media id 18147929296506067"
+      "media_id": "17976222210175447",
+      "detail": "Published Reel, media id 17976222210175447"
     },
     "facebook": {
       "ok": true,
       "platform": "facebook",
-      "media_id": "2396185740785609",
-      "detail": "Published Facebook Reel, video id 2396185740785609"
+      "media_id": "1819973619301167",
+      "detail": "Published Facebook Reel, video id 1819973619301167"
     },
     "youtube": {
       "ok": true,
       "platform": "youtube",
-      "video_id": "e0Q2o3AzA04",
-      "detail": "Uploaded Short (private): https://www.youtube.com/shorts/e0Q2o3AzA04"
+      "video_id": "WBakhHEJTJY",
+      "detail": "Uploaded Short (private): https://www.youtube.com/shorts/WBakhHEJTJY"
     }
   },
   "verification": {
