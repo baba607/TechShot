@@ -7,11 +7,19 @@
     python pipeline.py reject <reel-id> [--note TEXT]
     python pipeline.py publish --id <reel-id> --platform instagram|facebook|youtube [--approve] [--dry-run]
     python pipeline.py status [reel-id]
+    python pipeline.py next       # oldest APPROVED reel id (scheduled publish)
+    python pipeline.py ready      # SCRIPT_READY reel ids, oldest first
 
 APPROVAL MODE (the whole point): nothing publishes without a human.
 `publish` refuses unless BOTH hold: the reel's status is APPROVED (set by
 `approve`, only after a human watched the video) AND the --approve flag is
 passed. The GitHub publish workflow enforces the same rule server-side.
+
+2026-11-24 — the user changed the rule: "no more approvals — build and
+post directly". Muse therefore builds the reels each morning (scene
+images made by Muse, build via the manual build.yml workflow) and
+approves them, so the scheduled publish runs have APPROVED reels to
+pick. `publish` still requires APPROVED status + --approve.
 """
 
 import argparse
@@ -222,6 +230,37 @@ def cmd_publish(args):
     return 1
 
 
+def cmd_next(args):
+    """Print the OLDEST APPROVED reel id (one line, machine-readable).
+
+    Used by the scheduled publish workflow to pick the next reel for the
+    09:00 / 14:00 / 19:00 IST slots. Exit 1 (message on stderr, stdout
+    stays clean) when no reel is APPROVED.
+    """
+    items = library.list_items(config.CONTENT_DIR, status="APPROVED")
+    if not items:
+        print("no APPROVED reel — nothing to publish", file=sys.stderr)
+        return 1
+    oldest = min(items, key=lambda d: d.get("created_at", ""))
+    print(oldest["id"])
+    return 0
+
+
+def cmd_ready(args):
+    """Print SCRIPT_READY reel ids, one per line, oldest first.
+
+    Used by Muse's morning build loop (oldest first, up to 3 reels a
+    day). Exit 0 with no output when there is nothing ready. (A raw scan
+    draft is SCRIPT_READY too but its voiceover is still a TODO — `build`
+    rejects it at validation, fast, and the morning loop simply moves on
+    to the next id.)
+    """
+    items = library.list_items(config.CONTENT_DIR, status="SCRIPT_READY")
+    for item in reversed(items):  # list_items is newest-first
+        print(item["id"])
+    return 0
+
+
 def cmd_status(args):
     if args.reel_id:
         data = library.load_item(config.CONTENT_DIR, args.reel_id)
@@ -284,6 +323,12 @@ def main(argv=None):
     p = sub.add_parser("status", help="Show library / one reel")
     p.add_argument("reel_id", nargs="?")
     p.set_defaults(func=cmd_status)
+
+    p = sub.add_parser("next", help="Oldest APPROVED reel id (scheduled publish)")
+    p.set_defaults(func=cmd_next)
+
+    p = sub.add_parser("ready", help="SCRIPT_READY reel ids, oldest first")
+    p.set_defaults(func=cmd_ready)
 
     args = ap.parse_args(argv)
     return args.func(args)
