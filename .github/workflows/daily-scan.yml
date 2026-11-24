@@ -1,12 +1,14 @@
 # Tech Shot — daily news scan (NO publishing).
-# Runs every morning (10:00 IST), discovers + verifies news and commits
-# DRAFT scripts. A human still writes/finishes the voiceover and approves
-# every video — this workflow never builds video and never publishes.
+# Runs every morning (04:00 IST), discovers + verifies news and commits
+# DRAFT scripts. This workflow never builds video and never publishes —
+# Muse builds reels from finished scripts each morning (scene images by
+# Muse, manual build.yml workflow), and the publish workflow posts them
+# on the staggered schedule (09:00 / 14:00 / 19:00 IST).
 name: Daily news scan
 
 on:
   schedule:
-    - cron: "30 4 * * *"   # 04:30 UTC = 10:00 IST
+    - cron: "30 22 * * *"   # 22:30 UTC = 04:00 IST (next day)
   workflow_dispatch:
 
 permissions:
