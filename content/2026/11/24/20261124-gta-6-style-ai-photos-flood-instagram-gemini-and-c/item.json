@@ -1,0 +1,48 @@
+{
+  "id": "20261124-gta-6-style-ai-photos-flood-instagram-gemini-and-c",
+  "title": "GTA 6-style AI photos flood Instagram: Gemini and ChatGPT prompts to turn your selfie into Vice City post - The Times of India",
+  "summary": "GTA 6-style AI photos flood Instagram: Gemini and ChatGPT prompts to turn your selfie into Vice City post&nbsp;&nbsp;The Times of India",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQeWRZMUZzbWU3bmZEQ09fVk9HcWZYT1NOQWE2QnFMNkxybEpELWhNak5BcDRFVF8tZ2RhTXBOaDZNaUZQSUpNTVRMVEFNSFVjUU1PNE96Zi1aVmdiZWUwVEl5MkREeGV3RVpaNnd5NU1QcFV1dWI1SUQ4cWRfX2NMM3phdVlVcU9yekFIX05NN0h2NjdlbzNkZzAybUdUSUoxeWJ6ZnA4eUVmVERkV2ZHbU1UZm5aUjY4TFI3Z19WNkQwYjhUTnBtcFpNUXpKY3pRUDhwVGhIcEJZOVFfMU1rVmpCRnU1b0RSNEdzMEpRUlg2LWh0YXZUcC1FdzZPOG9Dbk9ySXBMVkZDcUxHRVA3ampTYVY3NW1L0gGeAkFVX3lxTE5udGx1TmVwdmc3VURObV9xM2VfSVhTa194ZkxWRkNuVENHeF9LdXFfWnVWNk12bHQ0dHMyRllHWEFoaVJNclplcVpINEEwMDZId3ctR3U3Z01fNFBjUGEyc2JGbTFQd0UzcnhfdXBqTXZxLTJNelJGUGk4ek1VVWM0UWtNZXlfUm84LWtYYlpXQXZUWHdCOGMxOUFMNnJQNzRsaUU3V2I0RkNuZktzSVctT1RRTTdXWkJPTGF1WWlNTnNTY0d5dTJCSG1OUVh3QVE2LVQ4RERSLWFyUlhfLWszUmpaSXF3dWFrZFo4Z3JHTHQwamUyazBjMnNnT3FfU3Y4ZUNOUlk2T0l5dmR5SHBzTnhpXzZXTm5ZWGRaNUE?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-23T10:36:00+00:00"
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/technology/tech-news/gta-6-style-ai-photos-flood-instagram-gemini-and-chatgpt-prompts-to-turn-your-selfie-into-vice-city-poster/articleshow/136068200.cms",
+      "name": "The Times of India",
+      "date": "2026-11-23"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-24T04:38:59.332706+00:00",
+  "updated_at": "2026-11-24T04:43:07.290827+00:00",
+  "history": [
+    {
+      "at": "2026-11-24T04:38:59.332715+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-24T04:41:14.261102+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified against 2 source(s), 2 domain(s)."
+    },
+    {
+      "at": "2026-11-24T04:43:07.290789+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Polished script written — ready to build."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "VERIFIED",
+    "reasons": [
+      "Verified against 2 source(s), 2 domain(s)."
+    ]
+  }
+}
