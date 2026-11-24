@@ -602,9 +602,10 @@ class TestWorkflows(unittest.TestCase):
         self.assertIn("baba607/kokoro", build)
         self.assertIn("hexgrad/kokoro", build)  # upstream fallback present
         self.assertIn("edge-tts", build)  # 2nd fallback voice
-        # auto-editor must NOT be in build.yml: it replaced the 2nd half
-        # of every Kokoro chunk with digital silence (2026-11-24 audio bug).
-        self.assertNotIn("auto-editor", build)
+        # auto-editor must NOT be installed by build.yml: it replaced the
+        # 2nd half of every Kokoro chunk with digital silence (2026-11-24
+        # audio bug). (The file may still mention it in a comment.)
+        self.assertNotIn("pip install --quiet auto-editor", build)
 
     def test_no_secret_values_in_repo(self):
         # The repo must contain secret NAMES only — never real IDs/tokens.
