@@ -1,11 +1,22 @@
-# Tech Shot — publish a reel (manual only, approval-gated).
-# A human dispatches this with: reel id + platforms + approve=yes.
-# The job runs ONLY when approve == 'yes' AND the reel's status is APPROVED
-# (the CLI re-checks status — a reel that was never human-approved cannot
-# publish even if this workflow is dispatched). Nothing here is scheduled.
+# Tech Shot — publish a reel (staggered schedule + manual dispatch).
+# SCHEDULED (the normal path): three runs a day — 09:00, 14:00 and 19:00
+# IST — each picks the OLDEST APPROVED reel (`pipeline.py next`) and
+# publishes it to all three platforms. If no reel is APPROVED, the run
+# exits cleanly with "no reel ready — nothing to publish" (not a failure).
+# MANUAL: a human dispatches with reel id + platforms + approve=yes.
+# The job runs ONLY on schedule OR when approve == 'yes', AND the reel's
+# status must be APPROVED (the CLI re-checks status — a reel that was
+# never approved cannot publish even if this workflow is dispatched).
+# Muse builds + approves up to 3 reels each morning (scene images by
+# Muse, manual build.yml workflow), so the three slots normally have one
+# reel each.
 name: Publish reel
 
 on:
+  schedule:
+    - cron: "30 3 * * *"    # 03:30 UTC = 09:00 IST
+    - cron: "30 8 * * *"    # 08:30 UTC = 14:00 IST
+    - cron: "30 13 * * *"   # 13:30 UTC = 19:00 IST
   workflow_dispatch:
     inputs:
       reel_id:
@@ -29,7 +40,7 @@ permissions:
 
 jobs:
   publish:
-    if: ${{ inputs.approve == 'yes' }}
+    if: ${{ github.event_name == 'schedule' || inputs.approve == 'yes' }}
     runs-on: ubuntu-latest
     env:
       # Secrets — values live ONLY in GitHub Secrets, never in this file.
@@ -51,32 +62,57 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Scheduled runs: pick the oldest APPROVED reel (FIFO, so nothing
+      # waits forever) and all three platforms. Sets REEL_ID / PLATFORMS
+      # for the later steps via $GITHUB_ENV. No APPROVED reel -> clean
+      # exit, not a failure: the later steps are skipped (SKIP_PUBLISH).
+      - name: Pick next reel (scheduled)
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+          if ! REEL_ID=$(python pipeline.py next); then
+            echo "no reel ready — nothing to publish"
+            echo "SKIP_PUBLISH=true" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          echo "REEL_ID=$REEL_ID" >> "$GITHUB_ENV"
+          echo "PLATFORMS=instagram,facebook,youtube" >> "$GITHUB_ENV"
+          echo "Scheduled publish: $REEL_ID to instagram,facebook,youtube"
+
+      # Manual dispatch: the reel + platforms come from the inputs.
+      - name: Use manual inputs
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "REEL_ID=${{ inputs.reel_id }}" >> "$GITHUB_ENV"
+          echo "PLATFORMS=${{ inputs.platforms }}" >> "$GITHUB_ENV"
+
       # The video is NOT in the repo (*.mp4 is gitignored) — the build
       # workflow hosts it on a GitHub release, so fetch it from there.
       # (Instagram needs the same public URL.)
       - name: Get built video (GitHub release)
+        if: ${{ env.SKIP_PUBLISH != 'true' }}
         run: |
-          REEL_DIR="content/$(echo '${{ inputs.reel_id }}' | sed -E 's/^([0-9]{4})([0-9]{2})([0-9]{2})-/\1\/\2\/\3\/&/')"
-          TAG="reel-${{ inputs.reel_id }}"
+          REEL_DIR="content/$(echo "$REEL_ID" | sed -E 's/^([0-9]{4})([0-9]{2})([0-9]{2})-/\1\/\2\/\3\/&/')"
+          TAG="reel-$REEL_ID"
           URL="https://github.com/${{ github.repository }}/releases/download/${TAG}/final_video.mp4"
           curl -sL --fail "$URL" -o "$REEL_DIR/final_video.mp4" || { echo "Video not on release $TAG — run the build first"; exit 1; }
           echo "TECHSHOT_VIDEO_PUBLIC_URL=$URL" >> "$GITHUB_ENV"
 
       - name: Publish (per platform, explicit approval)
+        if: ${{ env.SKIP_PUBLISH != 'true' }}
         # One invocation with ALL platforms: pipeline.py loops internally
         # and sets the status once at the end. Calling it once per
         # platform used to poison the rest — the first failure set the
         # reel to FAILED and the next invocation refused to run.
         run: |
-          PLATS=($(echo "${{ inputs.platforms }}" | tr ',' ' '))
-          python pipeline.py publish --id "${{ inputs.reel_id }}" \
+          PLATS=($(echo "$PLATFORMS" | tr ',' ' '))
+          python pipeline.py publish --id "$REEL_ID" \
             --platform "${PLATS[@]}" --approve
 
       - name: Commit publish status
-        if: always()
+        if: ${{ always() && env.SKIP_PUBLISH != 'true' }}
         run: |
           git config user.name "tech-shot-bot"
           git config user.email "tech-shot-bot@users.noreply.github.com"
           git add content/
-          git diff --cached --quiet || git commit -m "Publish ${{ inputs.reel_id }}: ${{ inputs.platforms }}"
+          git diff --cached --quiet || git commit -m "Publish $REEL_ID: $PLATFORMS"
           git push || true
