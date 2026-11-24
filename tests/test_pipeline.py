@@ -9,6 +9,7 @@ No test makes a real API call. No test needs network except the optional
 live scan smoke test (not part of this suite).
 """
 
+import contextlib
 import json
 import os
 import re
@@ -622,6 +623,64 @@ class TestScanMocked(unittest.TestCase):
             shutil.rmtree(tmp, ignore_errors=True)
 
 
+class TestNextReady(unittest.TestCase):
+    def _make_library(self, tmp):
+        # Three items with distinct created_at, oldest first.
+        ids = []
+        for i, (title, status) in enumerate((("Old reel", "APPROVED"),
+                                             ("Mid reel", "SCRIPT_READY"),
+                                             ("New reel", "SCRIPT_READY"))):
+            item = library.create_item(tmp, title)
+            ids.append(item["id"])
+            library.set_status(tmp, item["id"], "VERIFIED")
+            library.set_status(tmp, item["id"], "SCRIPT_READY")
+            if status == "APPROVED":
+                for st in ("VIDEO_READY", "APPROVAL_PENDING", "APPROVED"):
+                    library.set_status(tmp, item["id"], st)
+            # Back-date created_at so ordering is deterministic.
+            data = library.load_item(tmp, item["id"])
+            data["created_at"] = f"2026-11-2{i}T00:00:00+00:00"
+            library.save_item(tmp, data)
+        return ids
+
+    def _run(self, tmp, argv):
+        import pipeline
+        from io import StringIO
+        out, err = StringIO(), StringIO()
+        with mock.patch("config.CONTENT_DIR", tmp), \
+             contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            rc = pipeline.main(argv)
+        return rc, out.getvalue(), err.getvalue()
+
+    def test_next_oldest_approved_and_ready_oldest_first(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            ids = self._make_library(tmp)
+            rc, out, _ = self._run(tmp, ["next"])
+            self.assertEqual(rc, 0)
+            self.assertEqual(out.strip(), ids[0])  # the APPROVED one
+            rc, out, _ = self._run(tmp, ["ready"])
+            self.assertEqual(rc, 0)
+            # SCRIPT_READY ids, oldest first.
+            self.assertEqual(out.split(), [ids[1], ids[2]])
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_next_none_ready_exits_1_machine_readable(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            rc, out, err = self._run(tmp, ["next"])
+            self.assertEqual(rc, 1)
+            self.assertEqual(out, "")  # stdout stays clean for scripts
+            self.assertIn("no APPROVED reel", err)
+            # ready with nothing ready: exit 0, no output.
+            rc, out, _ = self._run(tmp, ["ready"])
+            self.assertEqual(rc, 0)
+            self.assertEqual(out, "")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
 class TestWorkflows(unittest.TestCase):
     def test_yaml_valid_and_secrets_named(self):
         import yaml
@@ -647,6 +706,31 @@ class TestWorkflows(unittest.TestCase):
         # 2nd half of every Kokoro chunk with digital silence (2026-11-24
         # audio bug). (The file may still mention it in a comment.)
         self.assertNotIn("pip install --quiet auto-editor", build)
+
+    def test_staggered_schedule_crons(self):
+        # IST = UTC+5:30, no DST. Verify each workflow's cron + IST slot.
+        import yaml
+        wf_dir = REPO_ROOT / ".github/workflows"
+
+        def crons(name):
+            data = yaml.safe_load((wf_dir / name).read_text(encoding="utf-8"))
+            on = data.get("on") or data.get(True) or {}
+            return [s["cron"] for s in (on.get("schedule") or [])]
+
+        # 22:30 UTC = 04:00 IST next day (scan).
+        self.assertEqual(crons("daily-scan.yml"), ["30 22 * * *"])
+        # 03:30 UTC = 09:00 IST, 08:30 UTC = 14:00 IST, 13:30 UTC = 19:00 IST.
+        self.assertEqual(crons("publish.yml"),
+                         ["30 3 * * *", "30 8 * * *", "30 13 * * *"])
+        # build.yml stays manual-only (no schedule).
+        self.assertEqual(crons("build.yml"), [])
+
+    def test_publish_picks_next_approved_reel(self):
+        pub = (REPO_ROOT / ".github/workflows/publish.yml"
+               ).read_text(encoding="utf-8")
+        self.assertIn("pipeline.py next", pub)
+        self.assertIn("no reel ready", pub)
+        self.assertIn("instagram,facebook,youtube", pub)
 
     def test_no_secret_values_in_repo(self):
         # The repo must contain secret NAMES only — never real IDs/tokens.
