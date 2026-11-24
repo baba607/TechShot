@@ -1,0 +1,31 @@
+{
+  "id": "20261124-openai-launches-gpt-6-2-sol-in-chatgpt-with-major",
+  "title": "OpenAI Launches GPT-6.2 Sol in ChatGPT With Major Vision and Search Upgrades - The Mac Observer",
+  "summary": "OpenAI Launches GPT-6.2 Sol in ChatGPT With Major Vision and Search Upgrades&nbsp;&nbsp;The Mac Observer",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSmRqVGc0WjBoWFN1NW9vMUN4SzZ5VXhNNGg0Z1VFQ1ZYdFhEUnVSTkdtcFMyak00cUMxZHN5N21jbHkxamo2aW5MS1ViNVgycGNMdmQ4TlNHRmd0dHN4MzRsLW1ma1FfNE4tYmpCenA5SEtKRHYzT19ndXVmM05HQW80RG03VWhSU2ZCLUVOSU1VWXBsOU0ycmdTaDlWbFI3RjRrU1c2ZDFMR191bE5z?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-24T11:31:46+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-24T23:16:02.253349+00:00",
+  "updated_at": "2026-11-24T23:16:02.253697+00:00",
+  "history": [
+    {
+      "at": "2026-11-24T23:16:02.253354+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

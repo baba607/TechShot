@@ -1,0 +1,31 @@
+{
+  "id": "20261124-openai-brings-gpt-6-2-sol-to-chatgpt-s-chat-tab-wi",
+  "title": "OpenAI brings GPT-6.2 Sol to ChatGPT's Chat tab, will retire GPT-5.6 Sol next month - The Times of India",
+  "summary": "OpenAI brings GPT-6.2 Sol to ChatGPT's Chat tab, will retire GPT-5.6 Sol next month&nbsp;&nbsp;The Times of India",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQVUp0WXdkMDQzUWRSYUtPSEFtZFp5TGFCWU9oaEZPYzhLdE1zQ0lKWWF6cG5KU2NTTHFEZ0FBZVBPcUxKaFhFNE9iMVNGS0VRQXFNTkdjaW9JcTVoTXd6WHhuNnBXV0pkRmswb2tWWkxDVlFsejFLTEdxZmxWTzRHZVhCaVZIam9xNjUzS1Q5cmZiWXFBUDZ3bEpZUjZKNkw2Wmh5U3FEV3RNS09YZ25SbktKaEVhUkFaQUxsemJ3WjRHdDhZRkNQcEdWdnZVVkNMXzhiVll6Nm9wSHNrWFN2NGZBelZ6SXZad2dvdGtMU0VLYmtrMzZv0gH8AUFVX3lxTE1oY25tUzNZdlliRk5VT2dyR0VTc19sS29ERXZsWlN3YkEyZWhfcVRjT1JtSU8yOXp4RzVTdkd0Q3c5SWV1MTZPTkw5enl4QTR6eE4zYzRDdHlzMmlQVzQ0aEp5a0RaQXdKempvWWU1blNHZmZKdV9sdG5oNnNhZVMzNC1kUHFxWER1NEVTZjZMSXRsOFdwbTFZOFZTSGI5N3dqSkN6b3ZRblY2RlpTVUN5a01tRGhKSnRzaTg2TUhBU1JqSTFKOUpnRVNISE9CYUYwSm9IdVNZZmFrRXp1bWtmd014bHdhNkJaN0duMmV4R0hWT0FXVk00NnhqSw?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-24T12:08:00+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-24T23:16:02.246630+00:00",
+  "updated_at": "2026-11-24T23:16:02.246998+00:00",
+  "history": [
+    {
+      "at": "2026-11-24T23:16:02.246635+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

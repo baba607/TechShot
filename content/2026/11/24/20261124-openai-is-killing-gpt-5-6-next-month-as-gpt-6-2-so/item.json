@@ -1,0 +1,31 @@
+{
+  "id": "20261124-openai-is-killing-gpt-5-6-next-month-as-gpt-6-2-so",
+  "title": "OpenAI Is Killing GPT-5.6 Next Month as GPT-6.2 Sol Takes Over ChatGPT, and Subscribers Are Not Happy - Android Headlines",
+  "summary": "OpenAI Is Killing GPT-5.6 Next Month as GPT-6.2 Sol Takes Over ChatGPT, and Subscribers Are Not Happy&nbsp;&nbsp;Android Headlines",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOSDZlbzBGV0tpanhHXzhQSm56NXdUU01UOHJyNVVOcHNNaWUtcW1lNWR0Q0dudjV4QWJfZlFqSmp2OWpXdVd2R09DWmlGNU9scEV0SktfdG41QTExbXNRcDJPallxRGRUUENaYmZrMzIzUnN3OElFUXcxNHN6TkVuS0hXdDFPYWc0ZnpYMndOTDF6WVlF?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-24T19:09:50+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-24T23:16:02.255203+00:00",
+  "updated_at": "2026-11-24T23:16:02.255558+00:00",
+  "history": [
+    {
+      "at": "2026-11-24T23:16:02.255208+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}
