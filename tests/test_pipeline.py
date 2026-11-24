@@ -391,7 +391,7 @@ class TestPronFix(unittest.TestCase):
             "इन्तजार खत्म! जी टी ए सिक्स आ गया")
         self.assertEqual(
             pron_fix.fix_pronunciation("19 नवंबर को पीएस5 और एक्सबॉक्स"),
-            "19 नवंबर को पी एस फाइव और एक्स बोक्स")
+            "19 नवंबर को पी एस पाँच और एक्स बोक्स")
         self.assertEqual(
             pron_fix.fix_pronunciation("एक्सबॉक्स सीरीज़ एक्स/एस पर"),
             "एक्स बोक्स सीरीज एक्स एस पर")
