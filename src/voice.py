@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 import config
-from src import latin_fix, trim
+from src import latin_fix, pron_fix, trim
 
 KOKORO_RUNNER = Path(__file__).resolve().parent / "kokoro_tts.py"
 EDGE_TTS_RUNNER = Path(__file__).resolve().parent / "edge_tts.py"
@@ -160,6 +160,11 @@ def synthesize_chunks(script, work_dir, engine=None):
             # Latin words left in the Devanagari script (GTA, PS5, ...) are
             # converted first — Kokoro mangles raw Latin in a Hindi sentence.
             text = latin_fix.fix_latin_words(text)
+            # Then pronunciation fixes: some Devanagari spellings come out
+            # robotic (इंतज़ार->इंद्दार, पीएस5->प्येस पांग, "/" read as
+            # "slash") — rewrite them into forms Kokoro says cleanly.
+            # Subtitles are unaffected: they come from the scene text.
+            text = pron_fix.fix_pronunciation(text)
             if not out.exists() or out.stat().st_size < 1000:
                 # Fresh synthesis. (Cached chunks are reused as-is; delete
                 # the work/ dir to force a fresh voiceover.)

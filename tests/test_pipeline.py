@@ -25,7 +25,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 import config  # noqa: E402
 from src import captions, library, news, quality, script as script_mod, verify  # noqa: E402
-from src import latin_fix, trim, voice as voice_mod  # noqa: E402
+from src import latin_fix, pron_fix, trim, voice as voice_mod  # noqa: E402
 from src import video as video_mod  # noqa: E402
 from src.publish import facebook, instagram, youtube  # noqa: E402
 
@@ -381,6 +381,47 @@ class TestLatinFix(unittest.TestCase):
         got = latin_fix.fix_latin_words(
             "इंतज़ार खत्म! GTA 6 आ गया — 19 नवंबर को PS5 पर लॉन्च।")
         self.assertEqual(got, "इंतज़ार खत्म! जीटीए 6 आ गया — 19 नवंबर को पीएस5 पर लॉन्च।")
+
+
+class TestPronFix(unittest.TestCase):
+    def test_robotic_words_from_v6_transcript(self):
+        # The exact words Whisper heard wrong on the v6 GTA 6 reel.
+        self.assertEqual(
+            pron_fix.fix_pronunciation("इंतज़ार खत्म! जीटीए 6 आ गया"),
+            "इन्तजार खत्म! जी टी ए सिक्स आ गया")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("19 नवंबर को पीएस5 और एक्सबॉक्स"),
+            "19 नवंबर को पी एस फाइव और एक्स बोक्स")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("एक्सबॉक्स सीरीज़ एक्स/एस पर"),
+            "एक्स बोक्स सीरीज एक्स एस पर")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("रिव्यूज़ में धमाका — मेटाक्रिटिक 99"),
+            "रिव्यूज में धमाका — मेटा क्रिटिक 99")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("वाइस सिटी में लूसिया और जेसन"),
+            "वाइस सिटी में लुसिया और जेसन")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("टेक शॉट को फॉलो करो"),
+            "टेक शोट को फोलो करो")
+
+    def test_nukta_and_aw_rules(self):
+        # Nukta consonants -> base (Kokoro reads ज़ as द/ज).
+        self.assertEqual(pron_fix.fix_pronunciation("ज़रूर"), "जरूर")
+        self.assertEqual(pron_fix.fix_pronunciation("फ़ोन"), "फोन")
+        # "aw" vowel -> "o" in loanwords.
+        self.assertEqual(pron_fix.fix_pronunciation("लॉन्च"), "लोन्च")
+        self.assertEqual(pron_fix.fix_pronunciation("ऑनलाइन"), "ओनलाइन")
+        # Slash is read aloud as "slash" — drop it.
+        self.assertEqual(pron_fix.fix_pronunciation("एक्स/एस"), "एक्स एस")
+
+    def test_clean_hindi_untouched(self):
+        text = "13 साल का इंतजार था — दो बार डिले हुआ।"
+        self.assertEqual(pron_fix.fix_pronunciation(text), text)
+        self.assertEqual(pron_fix.fix_pronunciation(""), "")
+        self.assertEqual(
+            pron_fix.fix_pronunciation("इंडिया में प्राइस 5999 रुपये"),
+            "इंडिया में प्राइस 5999 रुपये")
 
 
 class TestTrim(unittest.TestCase):
