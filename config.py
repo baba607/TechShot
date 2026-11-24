@@ -84,7 +84,7 @@ KOKORO_SPEED = float(os.environ.get("TECHSHOT_KOKORO_SPEED", "1.0"))
 # Fallback voice: edge-tts (Microsoft neural, free, no key). Voice is the
 # male Hindi neural voice; it only needs network at build time (CI has it).
 EDGE_TTS_VOICE = os.environ.get("TECHSHOT_EDGE_TTS_VOICE", "hi-IN-MadhurNeural")
-# Silence trim (Auto-Editor style): at most this much silence is kept at
+# Silence trim (stdlib, wave module): at most this much silence is kept at
 # the ends of each voice chunk, and long internal pauses shrink toward it.
 TRIM_MAX_SILENCE = float(os.environ.get("TECHSHOT_TRIM_MAX_SILENCE", "0.35"))
 PIPER_MODEL = os.environ.get(

@@ -1,23 +1,21 @@
-"""Tech Shot — silence trim for TTS chunks (Auto-Editor style).
+"""Tech Shot — silence trim for TTS chunks.
 
-Rahasya Bharat trims every sentence's leading/trailing silence and long
-internal pauses (max 0.35s kept), so the narration sounds tight instead
-of breathy. Same idea here, applied to each chunk wav after synthesis.
+Trims every sentence's leading/trailing silence and long internal pauses
+(max 0.35s kept), so the narration sounds tight instead of breathy.
 
-Two implementations, in order:
-  1. `auto-editor` CLI if installed (pip install auto-editor) — the same
-     tool Rahasya Bharat uses. Called with --margin <max_silence>.
-  2. Pure-stdlib fallback (wave module + amplitude threshold) — no extra
-     dependency, always available.
+Pure-stdlib implementation only (wave module + amplitude threshold).
+auto-editor is DELIBERATELY NOT used: measured 2026-11-24, it replaces
+the second half of every Kokoro chunk with digital silence while keeping
+the duration — half the narration inaudible under the music (the v3/v4/v5
+"speed jada hai + lambe pause" bug). The stdlib trim keeps the voice
+intact through every chunk (verified on real Kokoro speech).
 
-FAIL-SAFE: any error, any missing tool, any unexpected wav format — the
-original file is left untouched and the build continues. Trimming must
-never fail a build. Returns True if the file was trimmed, False otherwise.
+FAIL-SAFE: any error, any unexpected wav format — the original file is
+left untouched and the build continues. Trimming must never fail a build.
+Returns True if the file was trimmed, False otherwise.
 """
 
-import shutil
 import struct
-import subprocess
 import wave
 from pathlib import Path
 
@@ -30,22 +28,6 @@ SILENCE_FRACTION = 0.02
 MIN_SILENCE_SEC = 0.10
 # Analysis window for the stdlib fallback.
 WINDOW_SEC = 0.010
-
-
-def _auto_editor_available():
-    return shutil.which("auto-editor") is not None
-
-
-def _trim_with_auto_editor(path, max_silence):
-    """Trim with the auto-editor CLI. Raises on any failure."""
-    out = path.with_name(path.stem + ".trimmed" + path.suffix)
-    subprocess.run(
-        ["auto-editor", str(path), "--margin", f"{max_silence}s",
-         "--no-open", "-o", str(out)],
-        check=True, capture_output=True, timeout=120)
-    if not out.exists() or out.stat().st_size < 100:
-        raise RuntimeError("auto-editor produced no output")
-    out.replace(path)
 
 
 def _read_mono16(path):
@@ -155,12 +137,6 @@ def trim_wav(path, max_silence=None):
     max_silence = (config.TRIM_MAX_SILENCE if max_silence is None
                    else max_silence)
     try:
-        if _auto_editor_available():
-            try:
-                _trim_with_auto_editor(path, max_silence)
-                return True
-            except Exception as exc:
-                print(f"[trim] auto-editor failed ({exc}) — stdlib fallback.")
         _trim_with_stdlib(path, max_silence)
         return True
     except Exception as exc:

@@ -411,9 +411,7 @@ class TestTrim(unittest.TestCase):
             self._make_wav(wav, [("silence", 1.0), ("tone", 1.0),
                                  ("silence", 1.0), ("tone", 0.5),
                                  ("silence", 0.8)])
-            with mock.patch.object(trim, "_auto_editor_available",
-                                  return_value=False):
-                self.assertTrue(trim.trim_wav(wav, max_silence=0.35))
+            self.assertTrue(trim.trim_wav(wav, max_silence=0.35))
             import wave
             with wave.open(str(wav), "rb") as w:
                 dur = w.getnframes() / w.getframerate()
@@ -432,18 +430,26 @@ class TestTrim(unittest.TestCase):
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
-    def test_trim_prefers_auto_editor_when_present(self):
+    def test_trim_keeps_second_half_audible(self):
+        # REGRESSION (2026-11-24): auto-editor replaced the 2nd half of
+        # every Kokoro chunk with digital silence while keeping the
+        # duration — half the narration inaudible. The stdlib trim must
+        # never do that: audible content stays audible to the end.
         tmp = Path(tempfile.mkdtemp())
         try:
             wav = tmp / "t.wav"
-            self._make_wav(wav, [("tone", 0.5)])
-            with mock.patch.object(trim, "_auto_editor_available",
-                                  return_value=True), \
-                 mock.patch.object(trim, "_trim_with_auto_editor") as ae, \
-                 mock.patch.object(trim, "_trim_with_stdlib") as std:
-                self.assertTrue(trim.trim_wav(wav))
-                ae.assert_called_once()
-                std.assert_not_called()
+            self._make_wav(wav, [("tone", 1.0), ("silence", 0.5),
+                                 ("tone", 1.0)])
+            self.assertTrue(trim.trim_wav(wav, max_silence=0.35))
+            import wave as _wave
+            with _wave.open(str(wav), "rb") as w:
+                frames = w.readframes(w.getnframes())
+                rate = w.getframerate()
+            import struct as _struct
+            samples = _struct.unpack(f"<{len(frames) // 2}h", frames)
+            # Last 0.5s must still be audible (the 2nd tone, not silence).
+            tail = samples[int(len(samples) - 0.5 * rate):]
+            self.assertGreater(max(abs(s) for s in tail), 1000)
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -596,7 +602,9 @@ class TestWorkflows(unittest.TestCase):
         self.assertIn("baba607/kokoro", build)
         self.assertIn("hexgrad/kokoro", build)  # upstream fallback present
         self.assertIn("edge-tts", build)  # 2nd fallback voice
-        self.assertIn("auto-editor", build)  # silence trim
+        # auto-editor must NOT be in build.yml: it replaced the 2nd half
+        # of every Kokoro chunk with digital silence (2026-11-24 audio bug).
+        self.assertNotIn("auto-editor", build)
 
     def test_no_secret_values_in_repo(self):
         # The repo must contain secret NAMES only — never real IDs/tokens.
