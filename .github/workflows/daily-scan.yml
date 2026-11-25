@@ -39,10 +39,20 @@ jobs:
           git diff --cached --quiet || git commit -m "Daily scan: draft scripts $(date -u +%Y-%m-%d)"
           git push
 
+      # Bookkeeping only — the scan + draft commit above are the real work.
+      # This step must NEVER fail the whole run: if the tracking issue
+      # can't be updated, the scan results are still committed and usable.
+      # (2026-11-25: this step failed every morning because the
+      # "daily-scan" label had never been created in the repo, so
+      # `gh issue create --label daily-scan` errored with
+      # "could not add label: 'daily-scan' not found".)
       - name: Update tracking issue
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          gh label create daily-scan --color 0E8A16 \
+            --description "Daily news scan tracking" 2>/dev/null || true
           TITLE="Daily scan — $(date -u +%Y-%m-%d)"
           BODY="Scan ran. New draft scripts are in content/$(date -u +%Y/%m/%d)/.
           Review each draft, finish the voiceover, then build + approve before anything publishes."
