@@ -15,9 +15,9 @@
       "date": "2026-06"
     }
   ],
-  "status": "APPROVED",
+  "status": "FAILED",
   "created_at": "2026-11-25T03:37:49.847008+00:00",
-  "updated_at": "2026-11-25T04:02:46.620735+00:00",
+  "updated_at": "2026-11-25T09:46:26.244185+00:00",
   "history": [
     {
       "at": "2026-11-25T03:37:49.847019+00:00",
@@ -54,7 +54,31 @@
       "from": "APPROVAL_PENDING",
       "to": "APPROVED",
       "note": "CI build run 45542117780 succeeded; mp4 from release reel-20261125-slow-pc-tez-kaise-karein audio-verified (continuous voice, Whisper transcript matches script). Approved for scheduled publish."
+    },
+    {
+      "at": "2026-11-25T09:46:26.244178+00:00",
+      "from": "APPROVED",
+      "to": "FAILED",
+      "note": "Publish failed on: youtube"
     }
   ],
-  "publish": {}
+  "publish": {
+    "instagram": {
+      "ok": true,
+      "platform": "instagram",
+      "media_id": "18147073786607546",
+      "detail": "Published Reel, media id 18147073786607546"
+    },
+    "facebook": {
+      "ok": true,
+      "platform": "facebook",
+      "media_id": "1101226149627773",
+      "detail": "Published Facebook Reel, video id 1101226149627773"
+    },
+    "youtube": {
+      "ok": false,
+      "platform": "youtube",
+      "detail": "Upload session failed (400): {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The request metadata specifies an invalid video description.\",\n    \"errors\": [\n      {\n        \"message\": \"The request metadata specifies an invalid video description.\",\n        \"domain\": \"youtube.video\",\n        \"reason\": \"invalidDescription\",\n       "
+    }
+  }
 }
