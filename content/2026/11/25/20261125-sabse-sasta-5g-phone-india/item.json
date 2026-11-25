@@ -1,0 +1,42 @@
+{
+  "id": "20261125-sabse-sasta-5g-phone-india",
+  "title": "Sabse sasta 5G phone India",
+  "summary": "Cheapest 5G phone in India Nov 2026: Rs 11,999 (Ai+ Nova 2, Lava Bold N1 5G) — Smartprix in-stock list + Cashify agree.",
+  "score": 9.0,
+  "sources": [
+    {
+      "url": "https://www.smartprix.com/mobiles/with-5g/exclude_out_of_stock-exclude_upcoming-stock?asc=1&sort=price",
+      "name": "Smartprix — Cheapest 5G phones in stock",
+      "date": "2026-11-25"
+    },
+    {
+      "url": "https://www.cashify.in/cheapest-5g-mobile-phones-in-india",
+      "name": "Cashify — 5 Cheapest 5G Phone In India November 2026",
+      "date": "2026-11-24"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-25T03:37:49.845416+00:00",
+  "updated_at": "2026-11-25T03:38:17.173050+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T03:37:49.845439+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-25T03:37:49.846535+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified against 2 sources, 2 domains: Smartprix in-stock price list (25 Nov 2026) + Cashify Nov 2026 — cheapest 5G in stock Rs 11,999."
+    },
+    {
+      "at": "2026-11-25T03:38:17.173007+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Polished script written — ready to build."
+    }
+  ],
+  "publish": {}
+}
