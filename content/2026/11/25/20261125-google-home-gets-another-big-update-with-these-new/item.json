@@ -1,0 +1,31 @@
+{
+  "id": "20261125-google-home-gets-another-big-update-with-these-new",
+  "title": "Google Home gets another big update with these new app, Nest Cam, and Gemini features - 9to5Google",
+  "summary": "Google Home gets another big update with these new app, Nest Cam, and Gemini features&nbsp;&nbsp;9to5Google",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPc2NVdnVUYjBKMzJhSzk2VXZFLW9tRVE5RU5GSHJ5a1o4d0ZJN0tOdTJ2c3NkMUVFc1Z5LWQzUWQ5bW9FeVp2eFJ2OXM0LV9WS2plMWtYYkVLTWdqWDVKN2IzZ05STXRTZ0ctU2ltSzlycS1oZWN0S0VGM3JaYXJwNlFkT2dPYTBzZmtGZGZmTGNIOW8?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-25T21:50:00+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-25T23:15:42.890438+00:00",
+  "updated_at": "2026-11-25T23:15:42.890870+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T23:15:42.890445+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

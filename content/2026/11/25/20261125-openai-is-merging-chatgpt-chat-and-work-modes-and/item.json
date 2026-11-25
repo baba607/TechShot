@@ -1,0 +1,31 @@
+{
+  "id": "20261125-openai-is-merging-chatgpt-chat-and-work-modes-and",
+  "title": "OpenAI Is Merging ChatGPT Chat and Work Modes, and Paying Subscribers Fear Smaller Usage Limits - Android Headlines",
+  "summary": "OpenAI Is Merging ChatGPT Chat and Work Modes, and Paying Subscribers Fear Smaller Usage Limits&nbsp;&nbsp;Android Headlines",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPM2xuZXNLcGZMS2ZnallvdXRtZE1iTDh2bDgzd2hBN210SnZMekh1QkpTSjJacFlvdk04VWV2bm8xVWFVOVNUcEM5MkRSdDk5T0VCYlB2WHBKUUE2WURzNEJLMW0yWGllWUx6UWo0T2lybFEzWVM0TF9SdkpCSVd6WGNXdHc5bjQzbnVkTHZEcl9vUURVdmc?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-25T18:42:55+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-25T23:15:42.904627+00:00",
+  "updated_at": "2026-11-25T23:15:42.905004+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T23:15:42.904632+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

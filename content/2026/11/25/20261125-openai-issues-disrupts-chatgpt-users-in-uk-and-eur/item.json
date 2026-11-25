@@ -1,0 +1,31 @@
+{
+  "id": "20261125-openai-issues-disrupts-chatgpt-users-in-uk-and-eur",
+  "title": "OpenAI issues disrupts ChatGPT users in UK and Europe - Cybernews",
+  "summary": "OpenAI issues disrupts ChatGPT users in UK and Europe&nbsp;&nbsp;Cybernews",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5RNUJleldob1J2eHpYVlFvRlhpRVNtcmhSQmFabTRpblJsR0syTlJHZ2VReHdfRnRrZmY2c3NDdkNuTkVUNTcxQ21aT2JtRXFfTzE4cW5RWE5kajRRM0pHVTc2VWpva0xMaFE?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-25T12:28:50+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-25T23:15:42.899990+00:00",
+  "updated_at": "2026-11-25T23:15:42.900321+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T23:15:42.899995+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

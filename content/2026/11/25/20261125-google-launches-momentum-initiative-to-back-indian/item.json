@@ -1,0 +1,31 @@
+{
+  "id": "20261125-google-launches-momentum-initiative-to-back-indian",
+  "title": "Google Launches Momentum Initiative to Back Indian Startups With AI, Gemini and Cloud Infrastructure - Convergence Now",
+  "summary": "Google Launches Momentum Initiative to Back Indian Startups With AI, Gemini and Cloud Infrastructure&nbsp;&nbsp;Convergence Now",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQbENkeWVIaFRzb2VxR0ZIbkllSTVVai0tRExrWnppdVQyMVgwMDAzaU9EY3VwdnJkeDFDdlVCdWZYeDJKMTJjaW55R3BrXzgzRlRyQ0dLSXd5TGV1U1g5eF8xUmJYalE3RXlWcGRVRjJiOGhVN2UybV9WZG96YlI2dEFMUVpvenpQbXlUR0J6MEhUd09JdURWaUJoV2M1T0xua0JoNFRQMEdDVV9fdnVTMGtHRkxPeXFFbDdxSDRoY1BfNFRLdmFfS0ctUzZ4RUFCN1ZSMm9nNA?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-25T09:29:16+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-25T23:15:42.887548+00:00",
+  "updated_at": "2026-11-25T23:15:42.887910+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T23:15:42.887553+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

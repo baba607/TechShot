@@ -1,0 +1,31 @@
+{
+  "id": "20261125-i-blind-tested-3-gemini-models-on-real-seo-questio",
+  "title": "I Blind-Tested 3 Gemini Models On Real SEO Questions – Neon Won 5 Of 6 - Search Engine Journal",
+  "summary": "I Blind-Tested 3 Gemini Models On Real SEO Questions – Neon Won 5 Of 6&nbsp;&nbsp;Search Engine JournalGoogle is back in AI game with Gemini 4 Neon, Elon Musk calls it impressive&nbsp;&nbsp;India TodayI want to use Google’s latest Gemini models, but choosing one is homework&nbsp;&nbsp;Android Police",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOOWVjRE1OV2thUm9tUXJRcmdVaTktNVJXUkFnRDNUd0szMEZicTRxOG9fQ3JqN2dqRFZpclMtU3dwVHhZVGEwU2VvMjZUMURnaEVFMkVVcERVMjhiVnVScHotRzVIaVpXTzlmN3A0QWttYl9sSzhuOG5qaDhfYTdJN0h2TXFOdTZQTGFyR0pZVm1pMXN1LVM1THp3dzlHMjdZcTZpT3BKYXpOaXJuUlBBaFJTQ1R2ZkNJbWYtcVZsMUs5NTEzek5ZVVpjRGN4UzRiQ2VJY0lsVUQ4TllhLU0xWW9jOU9CamNL?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-23T20:00:33+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-25T23:15:42.882584+00:00",
+  "updated_at": "2026-11-25T23:15:42.883160+00:00",
+  "history": [
+    {
+      "at": "2026-11-25T23:15:42.882590+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}
