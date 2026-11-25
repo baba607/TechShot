@@ -29,6 +29,21 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Fail FAST on a bad reel id. A trailing hyphen (or other invalid
+      # tag character) passes the build but makes `gh release create`
+      # fail with HTTP 422 "tag_name is not a valid tag" AFTER a 4-minute
+      # build — that is what killed run #21 on 2026-11-24
+      # (reel_id ended in "-"). slugify() already strips trailing
+      # hyphens for new reels; this guards against stale/manual ids.
+      - name: Validate reel id (fail fast on bad tag)
+        run: |
+          REEL_ID="${{ inputs.reel_id }}"
+          if [[ "$REEL_ID" == *- ]] || [[ "$REEL_ID" =~ [^A-Za-z0-9._-] ]]; then
+            echo "::error::Invalid reel_id '$REEL_ID' — must not end with '-' and must contain only letters, digits, '.', '_' or '-' (GitHub rejects it as a release tag)."
+            exit 1
+          fi
+          echo "reel_id OK: $REEL_ID"
+
       - name: Install system deps (ffmpeg + espeak for Kokoro phonemization)
         run: |
           sudo apt-get update -qq
@@ -75,16 +90,25 @@ jobs:
       # Host the video on a GitHub release (permanent public URL) — the
       # publish workflow fetches it from here, and Instagram needs a
       # public video URL. Artifacts expire in 7 days; releases don't.
+      # Retry loop: two runs for the same reel can race — both see "no
+      # release", both try create, one gets 422 "already exists".
+      # After the loop, verify the video is actually on the release and
+      # fail loudly if it is not (publishing without it cannot work).
       - name: Host video on GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="reel-${{ inputs.reel_id }}"
           MP4=$(find content -name 'final_video.mp4' | head -1)
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$MP4" --clobber
-          else
-            gh release create "$TAG" "$MP4" \
+          for i in 1 2 3; do
+            if gh release view "$TAG" >/dev/null 2>&1; then
+              gh release upload "$TAG" "$MP4" --clobber && break
+            elif gh release create "$TAG" "$MP4" \
               --title "Tech Shot reel ${{ inputs.reel_id }}" \
-              --notes "Reel video (Instagram needs a public URL)."
-          fi
+              --notes "Reel video (Instagram needs a public URL)."; then
+              break
+            fi
+            echo "release attempt $i failed — retrying in 10s"; sleep 10
+          done
+          gh release view "$TAG" --json assets \
+            --jq -e '.assets[] | select(.name == "final_video.mp4")' >/dev/null
