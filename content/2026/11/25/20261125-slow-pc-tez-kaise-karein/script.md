@@ -45,7 +45,7 @@ Aisi hi Tech Updates ke liye Tech Shot ko follow karo!
 
 ## CAPTION (YouTube Shorts — search-friendly)
 Title: Slow PC Tez Kaise Karein? 5 Aasan Tricks | Windows 11 Speed Up 2026
-PC slow ho gaya hai? 5 aasan, free tricks se PC phir tez ho jayega: (1) Task Manager (Ctrl+Shift+Esc) se Startup apps me faltu apps band karo; (2) Settings > System > Storage me Storage Sense on karo; (3) drive me kam se kam 15% jagah khaali rakho; (4) Windows aur drivers update karo; (5) purane HDD ki jagah SSD lagao — sabse bada farak yahi padega.
+PC slow ho gaya hai? 5 aasan, free tricks se PC phir tez ho jayega: (1) Task Manager (Ctrl+Shift+Esc) se Startup apps me faltu apps band karo; (2) Settings me  System, phir Storage me Storage Sense on karo; (3) drive me kam se kam 15% jagah khaali rakho; (4) Windows aur drivers update karo; (5) purane HDD ki jagah SSD lagao — sabse bada farak yahi padega.
 
 Ye tricks BetaNews aur TechMitra se verified hain. Koi exact speed number claim nahi kar rahe — har PC par farak alag hota hai.
 
