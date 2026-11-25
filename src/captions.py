@@ -19,8 +19,18 @@ def instagram_caption(script):
     return caption
 
 
+def _clean_yt_text(text):
+    """YouTube Data API rejects '<' and '>' in snippet fields
+    (invalidDescription, 400) — e.g. a nav path like
+    'Settings > System > Storage'. Rewrite the common 'A > B' path
+    pattern as 'A, B' and drop any stray brackets."""
+    return (text.replace(" > ", ", ").replace(">", "")
+            .replace(" < ", ", ").replace("<", ""))
+
+
 def youtube_title(script):
     title = (script.get("caption_youtube_title") or script.get("title", "")).strip()
+    title = _clean_yt_text(title)
     if len(title) > MAX_YT_TITLE:
         title = title[: MAX_YT_TITLE - 3].rstrip() + "..."
     return title
@@ -28,6 +38,7 @@ def youtube_title(script):
 
 def youtube_description(script):
     desc = (script.get("caption_youtube_description") or "").strip()
+    desc = _clean_yt_text(desc)
     tags = list(dict.fromkeys(list(script.get("hashtags") or []) + BRAND_TAGS))
     tail = " ".join(tags)
     if tail not in desc:
