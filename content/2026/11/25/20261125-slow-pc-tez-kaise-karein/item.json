@@ -15,7 +15,7 @@
       "date": "2026-06"
     }
   ],
-  "status": "FAILED",
+  "status": "APPROVED",
   "created_at": "2026-11-25T03:37:49.847008+00:00",
   "updated_at": "2026-11-25T09:46:26.244185+00:00",
   "history": [
@@ -60,6 +60,12 @@
       "from": "APPROVED",
       "to": "FAILED",
       "note": "Publish failed on: youtube"
+    },
+    {
+      "at": "2026-11-25T11:01:12.377617+00:00",
+      "from": "FAILED",
+      "to": "APPROVED",
+      "note": "Partial publish retry: IG+FB published OK, YouTube failed (400 invalidDescription) because the description had \">\" in \"Settings > System > Storage\". Description fixed in script.md and captions.py now strips < > from YouTube titles/descriptions. Re-publishing YouTube only."
     }
   ],
   "publish": {
