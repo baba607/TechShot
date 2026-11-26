@@ -110,5 +110,11 @@ jobs:
             fi
             echo "release attempt $i failed — retrying in 10s"; sleep 10
           done
+          # Verify the video is actually on the release and fail loudly if
+          # it is not (publishing without it cannot work). NOTE: `gh --jq`
+          # takes the expression as its value and has no -e flag — passing
+          # `-e` made the expression a 2nd positional arg ("accepts at most
+          # 1 arg(s), received 2") and failed every run (2026-11-26).
           gh release view "$TAG" --json assets \
-            --jq -e '.assets[] | select(.name == "final_video.mp4")' >/dev/null
+            --jq '.assets[] | select(.name == "final_video.mp4") | .name' \
+            | grep -qx "final_video.mp4"
