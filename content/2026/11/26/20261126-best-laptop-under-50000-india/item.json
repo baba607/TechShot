@@ -15,9 +15,9 @@
       "date": "2026-10-23"
     }
   ],
-  "status": "APPROVED",
+  "status": "PUBLISHED",
   "created_at": "2026-11-26T00:33:31.062520+00:00",
-  "updated_at": "2026-11-26T01:28:26.451544+00:00",
+  "updated_at": "2026-11-26T09:42:59.079206+00:00",
   "history": [
     {
       "at": "2026-11-26T00:33:31.062528+00:00",
@@ -54,7 +54,32 @@
       "from": "APPROVAL_PENDING",
       "to": "APPROVED",
       "note": "Human approved after watching."
+    },
+    {
+      "at": "2026-11-26T09:42:59.079199+00:00",
+      "from": "APPROVED",
+      "to": "PUBLISHED",
+      "note": "Published to: instagram, facebook, youtube"
     }
   ],
-  "publish": {}
+  "publish": {
+    "instagram": {
+      "ok": true,
+      "platform": "instagram",
+      "media_id": "17886623952524981",
+      "detail": "Published Reel, media id 17886623952524981"
+    },
+    "facebook": {
+      "ok": true,
+      "platform": "facebook",
+      "media_id": "1722581952764934",
+      "detail": "Published Facebook Reel, video id 1722581952764934"
+    },
+    "youtube": {
+      "ok": true,
+      "platform": "youtube",
+      "video_id": "XQOZ6Z52ajc",
+      "detail": "Uploaded Short (private): https://www.youtube.com/shorts/XQOZ6Z52ajc"
+    }
+  }
 }
