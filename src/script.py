@@ -16,15 +16,15 @@ A reel script is a dict:
     }
 
 Validation enforces the 30-45s format: hook in 0-3s, 5 scenes, voiceover
-~75-112 words at ~2.5 words/sec. `from_markdown()` reads the example
+~75-85 words at ~2.0 words/sec. `from_markdown()` reads the example
 scripts in content/examples/ so `pipeline.py build` can use them directly.
 """
 
 import re
 
-WORDS_PER_SEC = 2.5
+WORDS_PER_SEC = 2.0  # measured Kokoro Hindi pace 2026-11-26: ~0.47-0.50 s/word
 MIN_WORDS = 75    # ~30s
-MAX_WORDS = 112   # ~45s
+MAX_WORDS = 85    # ~43s at measured pace; 112 words ran 48-53s and failed the 45s cap
 SCENE_COUNT = 5
 BRAND_CTA = "Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
