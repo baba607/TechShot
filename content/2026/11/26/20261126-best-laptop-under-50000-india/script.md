@@ -16,10 +16,10 @@ Best laptop under 50000 India
 "Pachas hazaar me best laptop kaunsa? 5 picks, students aur office ke liye!"
 
 ## VOICEOVER SCRIPT (Roman Hindi)
-"Pachas hazaar me best laptop kaunsa hai? Paanch picks. Number ek, Lenovo ThinkBook 16 — solah inch screen, solah GB RAM, chhiyalis hazaar ke aas-paas, overall best. Number do, MSI Modern 14 — halka, chaudah inch, solah GB RAM, college ke liye best. Number teen, Acer Aspire 3 — students ke liye, chalis hazaar ke aas-paas. Number chaar, Acer Aspire 14 AI — pandrah ghante ki battery, sabse lambi battery life. Number paanch, HP 15 — bada screen, Office ke saath. Yaad rakho, solah GB RAM aur 512 GB SSD lena, aur khareedne se pehle live price check karna. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
+"Pachas hazaar me best laptop kaunsa hai? Paanch picks. Number ek, Lenovo ThinkBook 16 — solah inch, solah GB RAM, best. Number do, MSI Modern 14 — halka, chaudah inch, solah GB RAM, college ke liye. Number teen, Acer Aspire 3 — students ke liye. Number chaar, Acer Aspire 14 AI — pandrah ghante battery. Number paanch, HP 15 — bada screen. Solah GB RAM aur 512 GB SSD lena. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari)
-"पचास हज़ार में बेस्ट लैपटॉप कौनसा है? पाँच पिक्स। नंबर एक, लेनोवो थिंकबुक 16 — सोलह इंच स्क्रीन, सोलह GB रैम, छियालीस हज़ार के आस-पास, ओवरऑल बेस्ट। नंबर दो, MSI मॉडर्न 14 — हल्का, चौदह इंच, सोलह GB रैम, कॉलेज के लिए बेस्ट। नंबर तीन, एसर एस्पायर 3 — स्टूडेंट्स के लिए, चालीस हज़ार के आस-पास। नंबर चार, एसर एस्पायर 14 AI — पंद्रह घंटे की बैटरी, सबसे लंबी बैटरी लाइफ़। नंबर पाँच, HP 15 — बड़ा स्क्रीन, ऑफिस के साथ। याद रखो, सोलह GB रैम और 512 GB SSD लेना, और खरीदने से पहले लाइव प्राइस चेक करना। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+"पचास हज़ार में बेस्ट लैपटॉप कौनसा है? पाँच पिक्स। नंबर एक, लेनोवो थिंकबुक 16 — सोलह इंच, सोलह GB रैम, बेस्ट। नंबर दो, MSI मॉडर्न 14 — हल्का, चौदह इंच, सोलह GB रैम, कॉलेज के लिए। नंबर तीन, एसर एस्पायर 3 — स्टूडेंट्स के लिए। नंबर चार, एसर एस्पायर 14 AI — पंद्रह घंटे बैटरी। नंबर पाँच, HP 15 — बड़ा स्क्रीन। सोलह GB रैम और 512 GB SSD लेना। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
