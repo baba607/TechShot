@@ -16,10 +16,10 @@ Best camera phone kaunsa hai 2026
 "Best camera phone kaunsa hai? 5 picks, har budget ke liye!"
 
 ## VOICEOVER SCRIPT (Roman Hindi)
-"Best camera phone kaunsa hai? Paanch picks, har budget ke liye. Number ek, Vivo X300 Pro — 200 megapixel periscope zoom, portraits ke liye best, ek lakh bees hazaar ke aas-paas. Number do, Samsung Galaxy S26 Ultra — 200 megapixel, all-round flagship camera. Number teen, video ke liye iPhone 17 Pro — video me sabse aage. Number chaar, pachas hazaar ke budget me Samsung Galaxy S25 FE ya Pixel 10a. Aur number paanch, bees hazaar se kam me Samsung Galaxy M17 5G — OIS ke saath. Camera pehle, baaki sab baad me. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
+"Best camera phone kaunsa hai? Paanch picks, har budget ke liye. Number ek, Vivo X300 Pro — 200 megapixel periscope zoom, portraits ke liye best. Number do, Samsung Galaxy S26 Ultra — flagship camera. Number teen, video ke liye iPhone 17 Pro. Number chaar, pachas hazaar ke budget me Galaxy S25 FE ya Pixel 10a. Number paanch, bees hazaar se kam me Galaxy M17 5G — OIS ke saath. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari)
-"बेस्ट कैमरा फोन कौनसा है? पाँच पिक्स, हर बजट के लिए। नंबर एक, वीवो X300 प्रो — 200 मेगापिक्सल पेरिस्कोप ज़ूम, पोर्ट्रेट्स के लिए बेस्ट, एक लाख बीस हज़ार के आस-पास। नंबर दो, सैमसंग गैलेक्सी S26 अल्ट्रा — 200 मेगापिक्सल, ऑल-राउंड फ्लैगशिप कैमरा। नंबर तीन, वीडियो के लिए iPhone 17 प्रो — वीडियो में सबसे आगे। नंबर चार, पचास हज़ार के बजट में सैमसंग गैलेक्सी S25 FE या Pixel 10a। और नंबर पाँच, बीस हज़ार से कम में सैमसंग गैलेक्सी M17 5G — OIS के साथ। कैमरा पहले, बाकी सब बाद में। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+"बेस्ट कैमरा फोन कौनसा है? पाँच पिक्स, हर बजट के लिए। नंबर एक, वीवो X300 प्रो — 200 मेगापिक्सल पेरिस्कोप ज़ूम, पोर्ट्रेट्स के लिए बेस्ट। नंबर दो, सैमसंग गैलेक्सी S26 अल्ट्रा — फ्लैगशिप कैमरा। नंबर तीन, वीडियो के लिए iPhone 17 प्रो। नंबर चार, पचास हज़ार के बजट में गैलेक्सी S25 FE या Pixel 10a। नंबर पाँच, बीस हज़ार से कम में गैलेक्सी M17 5G — OIS के साथ। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
