@@ -16,10 +16,10 @@ Phone ki battery bachane ke tricks
 "Phone ki battery jaldi khatam ho jaati hai? 5 tricks, poora din chalegi!"
 
 ## VOICEOVER SCRIPT (Roman Hindi)
-"Phone ki battery jaldi khatam ho jaati hai? Paanch tricks se poora din chalegi. Pehla, brightness kam karo ya auto-brightness on karo — screen sabse zyada battery khata hai. Dusra, 120 hertz ki jagah 60 hertz refresh rate rakho. Teesra, dark mode on karo — AMOLED screen par kaale pixels band ho jaate hain. Chautha, charging 80 percent par roko — battery saalon tak healthy rahegi. Paanchva, background apps aur location band karo, aur battery saver on karo. Koi paid battery saver app mat lo — phone me sab kuch pehle se hai. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
+"Phone ki battery jaldi khatam ho jaati hai? Paanch tricks se poora din chalegi. Pehla, brightness kam karo ya auto-brightness on karo — screen sabse zyada battery khata hai. Dusra, 120 hertz ki jagah 60 hertz refresh rate rakho. Teesra, dark mode on karo — AMOLED screen par kaale pixels band ho jaate hain. Chautha, charging 80 percent par roko. Paanchva, background apps aur location band karo, battery saver on karo. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari)
-"फोन की बैटरी जल्दी खत्म हो जाती है? पाँच ट्रिक्स से पूरा दिन चलेगी। पहला, ब्राइटनेस कम करो या ऑटो-ब्राइटनेस ऑन करो — स्क्रीन सबसे ज़्यादा बैटरी खाता है। दूसरा, 120 हर्ट्ज़ की जगह 60 हर्ट्ज़ रिफ्रेश रेट रखो। तीसरा, डार्क मोड ऑन करो — AMOLED स्क्रीन पर काले पिक्सल्स बंद हो जाते हैं। चौथा, चार्जिंग 80 प्रतिशत पर रोको — बैटरी सालों तक हेल्दी रहेगी। पाँचवाँ, बैकग्राउंड ऐप्स और लोकेशन बंद करो, और बैटरी सेवर ऑन करो। कोई पेड बैटरी सेवर ऐप मत लो — फोन में सब कुछ पहले से है। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
+"फोन की बैटरी जल्दी खत्म हो जाती है? पाँच ट्रिक्स से पूरा दिन चलेगी। पहला, ब्राइटनेस कम करो या ऑटो-ब्राइटनेस ऑन करो — स्क्रीन सबसे ज़्यादा बैटरी खाता है। दूसरा, 120 हर्ट्ज़ की जगह 60 हर्ट्ज़ रिफ्रेश रेट रखो। तीसरा, डार्क मोड ऑन करो — AMOLED स्क्रीन पर काले पिक्सल्स बंद हो जाते हैं। चौथा, चार्जिंग 80 प्रतिशत पर रोको। पाँचवाँ, बैकग्राउंड ऐप्स और लोकेशन बंद करो, बैटरी सेवर ऑन करो। ऐसी ही टेक अपडेट्स के लिए टेक शॉट को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
