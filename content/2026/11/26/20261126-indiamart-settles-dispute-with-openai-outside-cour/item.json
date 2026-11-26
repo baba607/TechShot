@@ -1,0 +1,31 @@
+{
+  "id": "20261126-indiamart-settles-dispute-with-openai-outside-cour",
+  "title": "IndiaMART settles dispute with OpenAI outside court over exclusion from ChatGPT results - MediaNama",
+  "summary": "IndiaMART settles dispute with OpenAI outside court over exclusion from ChatGPT results&nbsp;&nbsp;MediaNama",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxORGphUzF4SFZiMnJjQ3dQSF9zcFUtQzBMODJRamxQb3dYaDBMc2IwbGIxUmw1TTlsU0RRWk1EZ3kzRjhNQ1FSLTNnQlB5V1ozVElmQkFfM2NDRTJtZUs5TV9lX0puMWxhcWo3cDllbVhhVlBCaFRCQXI4cWRTY3BVWGdBZlR4eHIwUHZjZUk1UW9ISkZ5M1FzLTRibHVfUy1nTy1BaQ?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-26T08:13:14+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-26T23:20:30.354452+00:00",
+  "updated_at": "2026-11-26T23:20:30.354665+00:00",
+  "history": [
+    {
+      "at": "2026-11-26T23:20:30.354454+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

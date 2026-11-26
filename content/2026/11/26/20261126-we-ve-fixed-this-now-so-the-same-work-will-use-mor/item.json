@@ -1,0 +1,31 @@
+{
+  "id": "20261126-we-ve-fixed-this-now-so-the-same-work-will-use-mor",
+  "title": "‘We’ve fixed this now, so the same work will use more of your plan’s usage allowance’: OpenAI admits it made a mistake when launching GPT-6.2 — and now, paying ChatGPT users could hit their usage limits up to 40% faster - TechRadar",
+  "summary": "‘We’ve fixed this now, so the same work will use more of your plan’s usage allowance’: OpenAI admits it made a mistake when launching GPT-6.2 — and now, paying ChatGPT users could hit their usage limits up to 40% faster&nbsp;&nbsp;TechRadar",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMiiwNBVV95cUxNa25Kbkt6cl9rTlExMXBrZ0FNXzBjMjM3RHY1UHdrWmxDajQ2cno0MmVGaHBuLXNQR0ppTUJISzB3NU92aTlrcEx0MmNwSDJTY1p6NXpueDlHZnN0OXBpNzRaMHJVV1FjeGNBMXBjSFZibks4aHdtTDNsNFJ5TUMzT1c2bjVUcHFTWU9FU1pIZGpxbXZJeGNDZTJLQ0xCTFhrekl6N3k1NjdQODhPNno5UGtORktVU3Q0Q0tCSV9qN2k4VUpuS21GY0FsbW5BWWtYdWdmbWhQLWcxd3FFR0l0R25PSE5Uc09FLVVSZ3VEdjlPVnVSZm1UTkE0RlFCbUwwaGpzQ21vU1NkVTRheWh6dlVzcks1OWZnVEcycHMwQTJDQmFJRXNqMlVpSWR5ZWMxVmRJVERkYmN1QzNfMVZ0S1l4bFVqY2FwLVl1QU56WWRUbXA2UVZ2bXZ4Rlhudm12TlZkN05lWHFYNUsyZXZPLTlaUjh5eHptNjJtMUpKSG9HRlZQRk1VTy1mbw?oc=5",
+      "name": "Google News — ChatGPT",
+      "date": "2026-11-26T11:50:59+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-26T23:20:30.359668+00:00",
+  "updated_at": "2026-11-26T23:20:30.359899+00:00",
+  "history": [
+    {
+      "at": "2026-11-26T23:20:30.359670+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}
