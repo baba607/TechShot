@@ -133,7 +133,7 @@ def synthesize_chunks(script, work_dir, engine=None):
 
     Returns a list of (chunk_id, wav_path, duration_sec, scene_index).
     Scene chunks come from the scene's own `voiceover_devanagari` if present,
-    else the script-level voiceover is split evenly across scenes.
+    else the script-level voiceover is split across scenes in order.
     """
     import wave
 
@@ -146,11 +146,25 @@ def synthesize_chunks(script, work_dir, engine=None):
     if not script_chunks:
         raise RuntimeError("No voiceover_devanagari in script — TTS needs "
                            "Devanagari input. Add it to the script first.")
-    # Distribute script-level chunks across scenes round-robin if scenes
-    # do not carry their own text.
+    # Distribute script-level chunks across scenes in contiguous blocks
+    # (in script order), so the narration stays in order and the closing
+    # CTA lands in the final scene, over the end card. Round-robin
+    # interleaving scrambled it: with 6 sentences over 5 scenes it put
+    # sentence 6 in scene 0, so the CTA played mid-reel and the end card
+    # went out silent (caught 2026-11-27 on all 3 morning reels).
+    # Extra sentences go to the LAST scenes, so the CTA always stays last.
     per_scene = [[] for _ in scenes] or [[]]
-    for i, chunk in enumerate(script_chunks):
-        per_scene[i % len(per_scene)].append(chunk)
+    n, s = len(script_chunks), len(per_scene)
+    base, extra = divmod(n, s)
+    idx = 0
+    for scene_i in range(s):
+        if base >= 1:
+            size = base + (1 if scene_i >= s - extra else 0)
+        else:
+            # Fewer sentences than scenes: one per scene, first scenes.
+            size = 1 if scene_i < n else 0
+        per_scene[scene_i] = script_chunks[idx:idx + size]
+        idx += size
     for scene_idx, scene in enumerate(scenes or [{}]):
         own = split_devanagari_chunks(scene.get("voiceover_devanagari", ""))
         scene_chunks = own if own else per_scene[scene_idx]
