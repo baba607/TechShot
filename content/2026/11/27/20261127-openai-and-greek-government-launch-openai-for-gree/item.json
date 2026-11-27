@@ -1,0 +1,31 @@
+{
+  "id": "20261127-openai-and-greek-government-launch-openai-for-gree",
+  "title": "OpenAI and Greek Government launch ‘OpenAI for Greece’",
+  "summary": "OpenAI and the Greek Government have launched “OpenAI for Greece” to bring ChatGPT Edu into secondary schools and support responsible AI learning. This partnership aims to boost AI literacy, fuel local start-ups, and drive national economic growth.",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://openai.com/global-affairs/openai-for-greece",
+      "name": "OpenAI News",
+      "date": "2025-09-05T08:00:00+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-27T23:16:08.225443+00:00",
+  "updated_at": "2026-11-27T23:16:08.225639+00:00",
+  "history": [
+    {
+      "at": "2026-11-27T23:16:08.225445+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

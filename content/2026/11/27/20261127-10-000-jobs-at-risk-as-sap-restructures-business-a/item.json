@@ -1,0 +1,31 @@
+{
+  "id": "20261127-10-000-jobs-at-risk-as-sap-restructures-business-a",
+  "title": "10,000 jobs at risk as SAP restructures business around AI - The Indian Express",
+  "summary": "10,000 jobs at risk as SAP restructures business around AI&nbsp;&nbsp;The Indian Express",
+  "score": 9.5,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMDFXZ29VRmw1bWxlcFUxdFNZWi04WGl0bjdVSVVUZXp5ME1rektxMDUzdE5TemJoWVJYZWZrQ0pER09BSUxCQlZCVlpTckpEUmhSRlNjNWlFaTF3VlVfLWdjRVBMYlUzanFtYnhsbHJwTXJndFQ3SmUwMEdjZnl0QWg4dDRxbFEzRmQtMkRPbXduU2VNUzBDNzJZMHVRX2h4TTd6cGlnNEJoNHZfU1dFRUd30gG4AUFVX3lxTFB0ZXFMMGhXcS1obEpMcWMtUUx2OWNiTkZ0UjNIUkxRT0dNY2drZ0JDeEJWRmtLZkk2U3RkRTdrZFFlR1NsN2lCcFBVRTJqNjNqcTFLSkloOW1SczNWWnNaVUpYWXZUeWhYSHBNeDZCRjVpYXdSNHV5ZS1fZlBSWHlyMlZ0WDhnOVhaVUFObmkzcjFGUmxLQTJlM3ExX0d2M0czTnJULW1abDRxVWRUYkJOR1dpVzItOU0?oc=5",
+      "name": "Google News — AI",
+      "date": "2026-11-27T02:45:50+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-27T23:16:08.230210+00:00",
+  "updated_at": "2026-11-27T23:16:08.230415+00:00",
+  "history": [
+    {
+      "at": "2026-11-27T23:16:08.230213+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 9.5) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

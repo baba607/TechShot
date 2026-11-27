@@ -1,0 +1,31 @@
+{
+  "id": "20261127-top-tech-news-google-gemini-smart-glasses-chatgpt",
+  "title": "Top Tech News: Google Gemini Smart Glasses, ChatGPT Health & AI Updates - IT Voice Media",
+  "summary": "Top Tech News: Google Gemini Smart Glasses, ChatGPT Health & AI Updates&nbsp;&nbsp;IT Voice Media",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWFBIWktsVHFfRjJuRllBNTFEQUJ2S1BKUC12bFFmaGVpSVlNbzU0d1o5NEpWWnBDMVRWSnlMbVV1QVphTmFqMU1Dc0hkRTJ2UF9rWlFjamdoNnhUZ1ZkdE4xeHoxOVNERTlzMDJvaUxyNy1rUVBnSFQ0ckRIY3dLclV0ZDNraDVyRWItVjgzak1zdzZscWpYMEZaMDVzcGZSc3JKTWhVODlHckxYLUdhVm5uODI?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-26T12:43:02+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-27T23:16:08.218501+00:00",
+  "updated_at": "2026-11-27T23:16:08.218715+00:00",
+  "history": [
+    {
+      "at": "2026-11-27T23:16:08.218505+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

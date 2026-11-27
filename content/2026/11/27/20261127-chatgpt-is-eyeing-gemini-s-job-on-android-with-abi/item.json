@@ -1,0 +1,31 @@
+{
+  "id": "20261127-chatgpt-is-eyeing-gemini-s-job-on-android-with-abi",
+  "title": "ChatGPT is eyeing Gemini’s job on Android, with ability to make calls, send texts, and more - Android Authority",
+  "summary": "ChatGPT is eyeing Gemini’s job on Android, with ability to make calls, send texts, and more&nbsp;&nbsp;Android Authority",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPNXhINUp2WXNRU2lJeW4wYkJCMW5KRDhLLVlYbE9BRWw0NHJ0Zy1JQm9PdVVpQVpaTjlDMjY3Tkl0MlFoUWIxQTdfYmk3UEtwem5ySWFHRUZXZnJxSC1TYW1kWFNXOUdTUGhEWGhQcnlxMm5IMWhxdEJra3NBU2UwSVlqbllZZw?oc=5",
+      "name": "Google News — Gemini",
+      "date": "2026-11-27T12:07:00+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-27T23:16:08.220784+00:00",
+  "updated_at": "2026-11-27T23:16:08.221005+00:00",
+  "history": [
+    {
+      "at": "2026-11-27T23:16:08.220787+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}

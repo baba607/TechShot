@@ -1,0 +1,31 @@
+{
+  "id": "20261127-our-approach-to-advertising-and-expanding-access-t",
+  "title": "Our approach to advertising and expanding access to ChatGPT",
+  "summary": "OpenAI plans to test advertising in the U.S. for ChatGPT’s free and Go tiers to expand affordable access to AI worldwide, while protecting privacy, trust, and answer quality.",
+  "score": 10.0,
+  "sources": [
+    {
+      "url": "https://openai.com/index/our-approach-to-advertising-and-expanding-access",
+      "name": "OpenAI News",
+      "date": "2026-01-16T00:00:00+00:00"
+    }
+  ],
+  "status": "DISCOVERED",
+  "created_at": "2026-11-27T23:16:08.223139+00:00",
+  "updated_at": "2026-11-27T23:16:08.223343+00:00",
+  "history": [
+    {
+      "at": "2026-11-27T23:16:08.223142+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    }
+  ],
+  "publish": {},
+  "verification": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "Big story (score 10.0) needs a 2nd independent source from a different domain — only 1 domain(s) found."
+    ]
+  }
+}
