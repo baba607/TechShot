@@ -6,7 +6,7 @@ Prepared: 2026-11-28 06:15 IST · Status: SCRIPT READY — build + direct publis
 - **Source 1:** Gadgets 360 — "Best Phones Under 20000 in India (28th November 2026)" (https://www.gadgets360.com/mobiles/best-phone-under-20000)
 - **Source 2:** TamilTech / Moneycontrol — "15 Diwali phones under ₹20,000: 2026 guide" (https://tamiltech.in/article/diwali-phones-under-20000-2026)
 - **Verification status: VERIFIED.** Saare 5 phones aur unke prices 28 Nov 2026 ki Gadgets 360 list se verified.
-- **Jo claim NAHI karna:** "Offer price hamesha milega" mat bolo — prices aur offers badalte rehte hain, khareedne se pehle live listing check karni hai; base variant ki price batayi hai, alag RAM/storage wale variant ki price alag ho sakti hai.
+- **Jo claim NAHI karna:** "Offer price hamesha milega" mat bolo — prices aur offers badalte rehte hain, khareedne se pehle live listing check karni hai; base variant ki price batayi hai, alag RAM/storage wale variant ki price alag ho sakti hai. Voiceover me prices round karke (lagbhag) batayi hain — exact list price on-screen text aur caption me hai.
 - **Category:** Evergreen · Phones · Best / Comparison · **News date:** 28 Nov 2026 · **Duration target:** 30–45 sec
 
 ## VIDEO TITLE
@@ -16,10 +16,10 @@ Best phone under 20000 India
 "₹20,000 ke budget me best phone kaunsa hai? Paanch picks — teesra sabse lamba chalega!"
 
 ## VOICEOVER SCRIPT (Roman Hindi)
-"₹20,000 ke budget me best phone kaunsa hai? Pehla, Moto G Max — ₹19,499, badi battery aur Android. Dusra, Realme P4x 5G — ₹18,999, 7,000mAh battery aur 144Hz display. Teesra, Samsung Galaxy M17 5G — ₹17,999, chhe saal ke updates. Chautha, CMF Phone 2 Pro — ₹16,999, alag design aur badhiya camera. Paanchva, Poco X7 5G — ₹17,999, gaming aur AMOLED display ke liye. Price badal sakti hai, khareedne se pehle check karo. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
+"₹20,000 budget me best phone kaunsa hai? Prices lagbhag hain. Pehla, Moto G Max — ₹19,500, badi battery. Dusra, Realme P4x 5G — ₹19,000, badi battery aur tez display. Teesra, Samsung M17 5G — ₹18,000, chhe saal ke updates. Chautha, CMF Phone 2 Pro — ₹17,000, alag design, badhiya camera. Paanchva, Poco X7 5G — ₹18,000, gaming aur AMOLED display. Khareedne se pehle live price check karo. Aisi hi Tech Updates ke liye Tech Shot ko follow karo!"
 
 ## VOICEOVER SCRIPT (Devanagari)
-"₹20,000 के बजट में बेस्ट फोन कौनसा है? पहला, Moto G Max — ₹19,499, बड़ी बैटरी और Android। दूसरा, Realme P4x 5G — ₹18,999, 7,000mAh बैटरी और 144Hz डिस्प्ले। तीसरा, Samsung Galaxy M17 5G — ₹17,999, छह साल के अपडेट्स। चौथा, CMF Phone 2 Pro — ₹16,999, अलग डिज़ाइन और बढ़िया कैमरा। पाँचवाँ, Poco X7 5G — ₹17,999, गेमिंग और AMOLED डिस्प्ले के लिए। प्राइस बदल सकती है, खरीदने से पहले चेक करो। ऐसी ही Tech Updates के लिए Tech Shot को फॉलो करो!"
+"₹20,000 बजट में बेस्ट फोन कौनसा है? Prices लगभग हैं। पहला, Moto G Max — ₹19,500, बड़ी बैटरी। दूसरा, Realme P4x 5G — ₹19,000, बड़ी बैटरी और तेज़ डिस्प्ले। तीसरा, Samsung M17 5G — ₹18,000, छह साल के अपडेट्स। चौथा, CMF Phone 2 Pro — ₹17,000, अलग डिज़ाइन, बढ़िया कैमरा। पाँचवाँ, Poco X7 5G — ₹18,000, गेमिंग और AMOLED डिस्प्ले। खरीदने से पहले लाइव प्राइस चेक करो। ऐसी ही Tech Updates के लिए Tech Shot को फॉलो करो!"
 
 ## SCENE BREAKDOWN (images + FFmpeg zoom/pan — har scene 1 image)
 | Scene | Time | Visual (image prompt) | On-screen text |
