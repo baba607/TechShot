@@ -1,0 +1,42 @@
+{
+  "id": "20261128-phone-storage-full-kaise-khaali-karein",
+  "title": "Phone storage full kaise khaali karein",
+  "summary": "Phone storage full ho gaya to kya karein: Settings Storage, Google Photos Free up space, WhatsApp storage, Files by Google Clean, cache clear.",
+  "score": 9.0,
+  "sources": [
+    {
+      "url": "https://toolsandthrive.com/how-to-free-up-space-on-android/",
+      "name": "Tools and Thrive — How to Free Up Space on Android: 12 Steps That Work (2026)",
+      "date": "2026-11"
+    },
+    {
+      "url": "https://www.droidviews.com/free-up-android-storage/",
+      "name": "DroidViews — Free up Android Storage: Safe Ways to Make Room",
+      "date": "2026-11"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-28T00:33:12.867408+00:00",
+  "updated_at": "2026-11-28T00:33:12.868242+00:00",
+  "history": [
+    {
+      "at": "2026-11-28T00:33:12.867416+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-28T00:33:12.867874+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified against 2 sources (evergreen fallback — scan verified nothing)."
+    },
+    {
+      "at": "2026-11-28T00:33:12.868237+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Evergreen script written — ready to build."
+    }
+  ],
+  "publish": {}
+}
