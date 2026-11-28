@@ -15,9 +15,9 @@
       "date": "2026-11"
     }
   ],
-  "status": "SCRIPT_READY",
+  "status": "APPROVED",
   "created_at": "2026-11-28T00:33:12.865600+00:00",
-  "updated_at": "2026-11-28T00:33:12.866436+00:00",
+  "updated_at": "2026-11-28T01:31:25.418012+00:00",
   "history": [
     {
       "at": "2026-11-28T00:33:12.865609+00:00",
@@ -36,6 +36,24 @@
       "from": "VERIFIED",
       "to": "SCRIPT_READY",
       "note": "Evergreen script written — ready to build."
+    },
+    {
+      "at": "2026-11-28T01:31:25.417131+00:00",
+      "from": "SCRIPT_READY",
+      "to": "VIDEO_READY",
+      "note": "Video ready (42.49s) — rebuilt in CI run #45, on release reel-20261128-december-2026-upcoming-phones-india."
+    },
+    {
+      "at": "2026-11-28T01:31:25.417636+00:00",
+      "from": "VIDEO_READY",
+      "to": "APPROVAL_PENDING",
+      "note": "Build succeeded in CI; video verified (narration order, CTA last)."
+    },
+    {
+      "at": "2026-11-28T01:31:25.418007+00:00",
+      "from": "APPROVAL_PENDING",
+      "to": "APPROVED",
+      "note": "Human approved after watching."
     }
   ],
   "publish": {}
