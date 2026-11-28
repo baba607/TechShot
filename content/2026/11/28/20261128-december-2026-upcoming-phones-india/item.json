@@ -1,0 +1,42 @@
+{
+  "id": "20261128-december-2026-upcoming-phones-india",
+  "title": "December 2026 upcoming phones India",
+  "summary": "December 2026 me India me aane wale phones: Motorola Edge 70 Neo, Motorola Signature 27, Xiaomi 18 Pro, OPPO Reno 17 series, Vivo X500 series.",
+  "score": 9.0,
+  "sources": [
+    {
+      "url": "https://themobileindian.com/picture-story/smartphones-launching-in-december-2026-oppo-reno-17-series-xiaomi-18-pro-and-more",
+      "name": "The Mobile Indian — Smartphones Launching in December 2026",
+      "date": "2026-11"
+    },
+    {
+      "url": "https://www.91mobiles.com/hub/motorola-signature-27-launch-date-india-december-9th/amp/",
+      "name": "91mobiles — Motorola Signature 27 launching in India on December 9th",
+      "date": "2026-11"
+    }
+  ],
+  "status": "SCRIPT_READY",
+  "created_at": "2026-11-28T00:33:12.865600+00:00",
+  "updated_at": "2026-11-28T00:33:12.866436+00:00",
+  "history": [
+    {
+      "at": "2026-11-28T00:33:12.865609+00:00",
+      "from": null,
+      "to": "DISCOVERED",
+      "note": "Discovered by scan."
+    },
+    {
+      "at": "2026-11-28T00:33:12.866055+00:00",
+      "from": "DISCOVERED",
+      "to": "VERIFIED",
+      "note": "Verified against 2 sources (evergreen fallback — scan verified nothing)."
+    },
+    {
+      "at": "2026-11-28T00:33:12.866430+00:00",
+      "from": "VERIFIED",
+      "to": "SCRIPT_READY",
+      "note": "Evergreen script written — ready to build."
+    }
+  ],
+  "publish": {}
+}
